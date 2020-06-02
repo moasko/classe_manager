@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="absolut_ajouts">
+
+        <!--notifications-->
+        <div class="not">
+            <div class="notifications">
+                <div class="notifi_icon">3</div>
+                <div class="notifi_texte">eleve ajouter avec succes</div>
+            </div>
+        </div>
+
+
+
+        <!--------ajouter eleve---------->
+        <div class="modal">
+            <div class="moadal_in">
+                <div class="former">
+                    <div class="formulair_titre">
+                        ajouter un eleve
+                    </div>
+
+                    <div>
+                        <div class="double">
+                            <div class="formg">
+                                <label for="nom">nom</label>
+                                <input type="text" name="nom" id="nom">
+                            </div>
+
+
+                            <div class="formg">
+                                <label for="prenom">prenom</label>
+                                <input type="text" name="prenom" id="prenom">
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="formg">
+                            <label for="etablissement">etablissement</label>
+
+                            <select id="etablissement" name="etablissement">
+                            <option value=""></option>
+                            <option value="istco">istco</option>
+                            <option value="isg">isg</option>
+                        </select>
+                        </div>
+
+
+                        <div class="formg">
+                            <label for="classe">classe</label>
+                            <select name="classe" id="classe">
+                            <option value=""></option>
+                            <option value="tlBb">tle Bb</option>
+                            <option value="tlBa">tle Ba</option>
+                            <option value="2ndBb">2nd Bb</option>
+                        </select>
+                        </div>
+
+
+                        <div class="btns">
+                            <button class="btn ajouter_elev">ajouter</button>
+                            <button class="btn annuler">anuler</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="app-ecran">
+        <!--la tête de l'app-->
+        <header>
+
+
+            <!--logo-->
+            <div class="label__conter">
+                <div class="label__text">nombre d'eleves</div>
+                <div class="label">0</div>
+            </div>
+
+            <div class="annee"></div>
+        </header>
+
+        <!--le corps de l'app-->
+        <div id="layout-container">
+            <div id="sidebar">
+                <div class="sidbar-content"></div>
+                <h2>ETABLISSEMENTS</h2>
+                <div class="rott">
+                    <div class="rot">
+                        <span>IST la colombe</span>
+                        <img class="puc" src="down, bottom, downward, arrow, navigation.svg" alt="">
+                    </div>
+
+                    <div class="wr">
+                        <div class="select a" id="tlBb">tlBb</div>
+                        <div class="select a" id="tlBa">tlBa</div>
+                        <div class="select a" id="2ndBb">2ndBb</div>
+                    </div>
+                </div>
+
+                <div class="nn"><svg width="100%" height="30px" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+                </div>
+
+                <div class="vertical_nav_btns">
+                    <button class="eleve_add_modal">+</button>
+                    <button class="listes">L</button>
+                </div>
+
+            </div>
+
+
+            <div class="conter">
+                <div class="ativ">
+                    <div class="cree">
+                        <div class="trace"></div>
+                        <!-------------------tableau des notes---------------------------->
+
+                        <div class="tableau"></div>
+                    </div>
+
+                    <!--bare des infos relative-->
+                    <div class="asid">
+                        <div class="notes nn">
+                            <h4 class="n1">aucun élève selectionner</h4>
+                            <h1 class="moy">00<span class="dmn">dMn</span></h1>
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf green"></div>
+                            <p>la moyenne de classe</p>
+                            <h1 class="myenne__classe"></h1><sup>dMn</sup>
+                        </div>
+
+                        <div class="notes">
+                            aucun élève selectionner
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf">
+                                <img src="green.png" alt="">
+                            </div>
+                            <p>la plus forte moyenne</p>
+                            <h1 class="plus_forte_n">00</h1><sup>dMn</sup>
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf">
+                                <img src="red.png" alt="">
+                            </div>
+                            <p>la plus faible moyenne</p>
+                            <h1 class="plus_faible_n">00</h1><sup>dMn</sup>
+                        </div>
+
+                        <div class="notes">
+                            0
+                        </div>
+
+                        <div class="notes">
+                            0
+                        </div>
+                    </div>
+                </div>
+
+                <body>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="logic.js"></script>
+    <script src="script.min.js"></script>
+
+    </body>
+
+</html>
