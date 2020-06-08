@@ -1,10 +1,9 @@
 //recuperation des donnee de la database
-let data = [
-    { id_eleve: 1, nom: "oaundaogo", prenom: "abdoul mouage", etablissement: "istco", classe: "tlBb", notes: [14, 20, 18, 15] },
-    { id_eleve: 2, nom: "achiepo", prenom: "abe paul beranger", etablissement: "istco", classe: "tlBa", notes: [11, 10, 18, 5] },
-    { id_eleve: 3, nom: "kone", prenom: "moussa", etablissement: "istco", classe: "tlBb", notes: [4, 10, 12, 15] },
-    { id_eleve: 4, nom: "tano", prenom: "zoro", etablissement: "isg", classe: "tlBb", notes: [11, 1, 18, 9] }
-]
+let data = JSON.parse(localStorage.getItem('scool'))
+
+if (data == "" || data == null) {
+    data = []
+}
 
 
 //declration des variables globales
@@ -23,16 +22,17 @@ let ajouter_eleve = (_id, _nom, _prenom, _etablissement, _classe, _notes) => {
 }
 
 document.querySelector('.ajouter_elev').addEventListener('click', () => {
-    let id = data.length + 1
+    const id = data.length + 1
     let nom = document.querySelector('#nom').value
     let prenom = document.querySelector('#prenom').value
     let etablissement = document.querySelector('#etablissement').value
     let classe = document.querySelector('#classe').value
-    let notes = [0]
+    let notes = []
 
     if (nom && prenom && etablissement && classe != "") {
         let add = ajouter_eleve(id, nom, prenom, etablissement, classe, notes)
         data.push(add)
+        localStorage.setItem('scool', JSON.stringify(data))
         notification("succes", "eleve ajoute avec succes")
         vider_champ()
         aficher()
@@ -73,17 +73,19 @@ function notification(type, texte) {
 
 
 //recuperation de la classe a chercher
-
 let data_classe = []
 let select = document.querySelectorAll('.select')
 select.forEach(e => {
     e.addEventListener('click', () => {
-        let id = e.id
-        let data_classe_copy = data.filter(a => a.id_eleve == id)
-        console.log(data_classe_copy)
+        const id = e.id
+        let copy = [...data]
+        const el = copy.filter(a => a.classe == id)
+        data_classe = [...el]
         aficher()
+
     })
 })
+
 
 
 
@@ -105,7 +107,7 @@ let aficher = () => {
         dom_content += `
         <div id="${e.id_eleve}" class="eleve">
         <div class="nom_eleve"><div class="rang">${increment_tableau_num+=1}</div> ${e.nom} ${e.prenom}</div>
-        <div class="notees">${note}</div>
+        <div class="notees">${note} <input class="new-note" id="id${e.id_eleve}" type="number"/></div>
         <div class="more"><img src="more.svg"/><div class="plus_hun visible"><div class="pluss"><a href="#">voir</a>
         <a href="#">modifié</a><a href="#">suprimer</a></div></div></div></div> 
         `
@@ -118,12 +120,11 @@ let aficher = () => {
 
 
 
-
 function get_classe_infos() {
     //moyenne de chaque eleves
     let mclass = []
         //recupere les notes de chaque eleves
-    data.map(m => {
+    data_classe.map(m => {
             let l = m.notes.reduce((a, b) => a + b)
             mclass.push(l / m.notes.length)
         })
@@ -139,7 +140,7 @@ function get_classe_infos() {
         document.querySelector('.plus_forte_n').innerHTML = plus_fort_note.toFixed(2)
         document.querySelector('.plus_faible_n').innerHTML = plus_faible_note.toFixed(2)
             // afiche le nombre des eleves de la classe 
-        let nombre_eleves = data.length
+        let nombre_eleves = data_classe.length
         document.querySelector('.label').innerHTML = nombre_eleves
 
     } else {
@@ -147,7 +148,7 @@ function get_classe_infos() {
         document.querySelector('.plus_forte_n').innerHTML = "0"
         document.querySelector('.plus_faible_n').innerHTML = "0"
             // afiche le nombre des eleves de la classe 
-        let nombre_eleves = data.length
+        let nombre_eleves = data_classe.length
         document.querySelector('.label').innerHTML = "0"
     }
 
@@ -172,9 +173,25 @@ function get_eleve_info() {
             document.querySelector('.n1').innerHTML = nop
             document.querySelector('.moy').innerHTML = `${myenne_eleve.toFixed(2)}<span class="dmn">dMn</span>`
             document.querySelector('.trace').innerHTML = barVIew
-
+            newNote(id)
+            aficher()
         })
     })
+}
+
+let stop = document.querySelectorAll('input')
+stop.forEach(elems => {
+    elems.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
+})
+
+
+
+let newNote = (rr) => {
+    this.rr = rr
+    let de = document.querySelector("#id" + this.rr).value
+    console.log(de)
 }
 
 
