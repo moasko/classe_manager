@@ -37,7 +37,7 @@ document.querySelector('.ajouter_elev').addEventListener('click', () => {
         vider_champ()
         aficher()
             // afiche le nombre des eleves de la classe 
-        let nombre_eleves = data.length
+        let nombre_eleves = data_classe.length
         document.querySelector('.label').innerHTML = nombre_eleves
     } else {
         notification("fail", "veillez ramplire les champs")
