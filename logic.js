@@ -1,3 +1,15 @@
+let db = new Dexie("moasko");
+db.version(1).stores({
+    eleves: '++id,nom,prenom,etablissement,classe,notes'
+});
+db.open()
+
+db.transaction('rw', db.eleves, function() {
+    let elev = yield db.eleves
+        .add({ nom: "moasko", prenom: "abdoul" });
+})
+
+
 //recuperation des donnee de la database
 let data = JSON.parse(localStorage.getItem('scool'))
 
@@ -6,8 +18,12 @@ if (data == "" || data == null) {
 }
 
 
-//declration des variables globales
+//dexie
 
+
+
+
+//declration des variables globales
 
 
 //ajouter un eleve a la liste de classe
@@ -31,13 +47,13 @@ document.querySelector('.ajouter_elev').addEventListener('click', () => {
 
     if (nom && prenom && etablissement && classe != "") {
         let add = ajouter_eleve(id, nom, prenom, etablissement, classe, notes)
-        data.push(add)
+        db.eleves.put(add)
         localStorage.setItem('scool', JSON.stringify(data))
         notification("succes", "eleve ajoute avec succes")
         vider_champ()
         aficher()
             // afiche le nombre des eleves de la classe 
-        let nombre_eleves = data_classe.length
+        let nombre_eleves = data.length
         document.querySelector('.label').innerHTML = nombre_eleves
     } else {
         notification("fail", "veillez ramplire les champs")
@@ -113,7 +129,6 @@ let aficher = () => {
         `
     })
     tableau.innerHTML = dom_content
-
 
 }
 
