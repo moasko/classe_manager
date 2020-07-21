@@ -1,0 +1,39 @@
+:root {
+    --colora: rgb(255, 0, 55);
+}
+
+body {
+    font-size: 11px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+}
+
+.petit-btn-rond {
+    box-shadow: 0px 0px 5px var(--colora);
+    color: #fff;
+    background-color: var(--colora);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.moyen-btn-rond {
+    box-shadow: 0px 0px 5px var(--colora);
+    color: #fff;
+    background-color: var(--colora);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.grand-btn-rond {
+    box-shadow: 0px 0px 5px var(--colora);
+    color: #fff;
+    background-color: var(--colora);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
