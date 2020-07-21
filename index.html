@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title Page</title>
-
-    <link href="style.css" rel="stylesheet">
+    <title>scool manager</title>
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -55,6 +54,7 @@
 
                             <select id="etablissement" name="etablissement">
                             <option value=""></option>
+                            <option value="samaritin">samaritin</option>
                             <option value="istco">istco</option>
                             <option value="isg">isg</option>
                         </select>
@@ -65,7 +65,7 @@
                             <label for="classe">classe</label>
                             <select name="classe" id="classe">
                             <option value=""></option>
-                            <option value="tlBb">tle Bb</option>
+                            <option value="tleB">tle B</option>
                             <option value="tlBa">tle Ba</option>
                             <option value="2ndBb">2nd Bb</option>
                         </select>
@@ -102,23 +102,9 @@
         <!--le corps de l'app-->
         <div id="layout-container">
             <div id="sidebar">
-                <div class="sidbar-content"></div>
                 <h2>ETABLISSEMENTS</h2>
-                <div class="rott">
-                    <div class="rot">
-                        <span>IST la colombe</span>
-                        <img class="puc" src="down, bottom, downward, arrow, navigation.svg" alt="">
-                    </div>
+                <div class="sidbar-content"></div>
 
-                    <div class="wr">
-                        <div class="select a" id="tlBb">tlBb</div>
-                        <div class="select a" id="tlBa">tlBa</div>
-                        <div class="select a" id="2ndBb">2ndBb</div>
-                    </div>
-                </div>
-
-                <div class="nn"><svg width="100%" height="30px" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-                </div>
 
                 <div class="vertical_nav_btns">
                     <button class="eleve_add_modal">+</button>
@@ -126,7 +112,7 @@
                 </div>
 
             </div>
-
+            <!--87399922-->
 
             <div class="conter">
                 <div class="ativ">
@@ -156,7 +142,7 @@
 
                         <div class="notes">
                             <div class="notesf">
-                                <img src="green.png" alt="">
+                                <img src="assets/img/icons/green.png" alt="">
                             </div>
                             <p>la plus forte moyenne</p>
                             <h1 class="plus_forte_n">00</h1><sup>dMn</sup>
@@ -164,7 +150,7 @@
 
                         <div class="notes">
                             <div class="notesf">
-                                <img src="red.png" alt="">
+                                <img src="assets/img/icons/red.png" alt="">
                             </div>
                             <p>la plus faible moyenne</p>
                             <h1 class="plus_faible_n">00</h1><sup>dMn</sup>
@@ -186,8 +172,12 @@
         </div>
 
     </div>
-    <script src="logic.js"></script>
-    <script src="script.min.js"></script>
+    <script type="text/sql" id="sql" src="assets/js/alasq.js"></script>
+
+    <script>
+    </script>
+    <script src="assets/js/logic.js"></script>
+    <script src="assets/js/script.min.js"></script>
 
     </body>
 
