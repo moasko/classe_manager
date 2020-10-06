@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>scool manager</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="edit_screen">
+        <div class="edit_screen--in">
+            <div class="edit--header">
+                <div class="eleve_id"></div>
+                <div class="close_edit_scree">X</div>
+            </div>
+            <div class="edit--body">
+
+                <div class="input-flex">
+                    <input type="text" name="nom" id="edite_nom">
+                    <input type="text" name="prenom" id="edite_prenom">
+                </div>
+
+                <div class="input-flex">
+                    <select name="etab" id="edite_etablissement">
+                            <option value="samaritin">samaritin</option>
+                            <option value="istco">istco</option>
+                            <option value="isg">isg</option>
+                    </select>
+                    <select name="class" id="edite_classe">
+                        <option value="tleB">tle B</option>
+                        <option value="tlBa">tle Ba</option>
+                        <option value="2ndBb">2nd Bb</option>
+                    </select>
+                </div>
+
+                <div class="input-flex one">
+                    <label for="edit_notes">les notes de la period en cours</label>
+                    <input type="text" name="edit_notes" id="edit_notes">
+                </div>
+
+            </div>
+            <div class="edit--footer">
+                <button id="enregistre_edition">enregistrer</button>
+                <button>annuler</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="absolut_ajouts">
+
+        <!--notifications-->
+        <div class="not">
+            <div class="notifications">
+                <div class="notifi_icon">3</div>
+                <div class="notifi_texte">eleve ajouter avec succes</div>
+            </div>
+        </div>
+
+        <!--------ajouter eleve---------->
+        <div class="modal">
+            <div class="moadal_in">
+                <div class="former">
+                    <div class="formulair_titre">
+                        ajouter un eleves
+                    </div>
+
+                    <div>
+                        <div class="double">
+                            <div class="formg">
+                                <label for="nom">nom</label>
+                                <input type="text" name="nom" id="nom">
+                            </div>
+
+
+                            <div class="formg">
+                                <label for="prenom">prenom</label>
+                                <input type="text" name="prenom" id="prenom">
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="formg">
+                            <label for="etablissement">etablissement</label>
+
+                            <select id="etablissement" name="etablissement">
+                        </select>
+                        </div>
+
+
+                        <div class="formg">
+                            <label for="classe">classe</label>
+                            <select name="classe" id="classe">
+                            <option value=""></option>
+                            <option value="tleB">tle B</option>
+                            <option value="tlBa">tle Ba</option>
+                            <option value="2ndBb">2nd Bb</option>
+                        </select>
+                        </div>
+
+
+                        <div class="btns">
+                            <button class="btn ajouter_elev">ajouter</button>
+                            <button class="btn annuler">anuler</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="app-ecran">
+        <!--la tête de l'app-->
+        <header>
+            <div class="btnplus">
+                <button class="pea">pae</button>
+            </div>
+            <!--logo-->
+            <div class="label__conter">
+                <div class="label__text">nombre d'eleves</div>
+                <div class="label">0</div>
+            </div>
+
+            <div class="radios">
+                <div id="a1" class="a1 epe">1</div>
+                <div id="a2" class="a2">2</div>
+                <div id="a3" class="a3">3</div>
+            </div>
+            <div class="annee"></div>
+        </header>
+        <!--le corps de l'app-->
+        <div id="layout-container">
+            <div id="sidebar">
+                <h2>ETABLISSEMENTS</h2>
+                <div class="sidbar-content"></div>
+
+
+                <div class="vertical_nav_btns opened">
+                    <button class="btn_closer_params">X</button>
+                    <div class="vertical-in">
+                        <button class="eleve_add_modal">+ <span>ajouter un eleve</span></buttonn>
+                        <button class="listes">L <span>afficher la liste de cette calsse</span></button>
+                        <button class="classement">C <span>fair le classement de cette classe</span></button>
+                        <a class="btn_rond" href="parametres.html">P <span>parametres</span></a>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--87399922-->
+            <div class="conter">
+                <div class="ativ">
+                    <div class="cree">
+                        <div class="trace"></div>
+                        <!-------------------tableau des notes---------------------------->
+
+                        <div class="tableau">
+                            <div class="spla">
+                                <img width="100%" height="500px" src="assets/img/icons/tcsvg.svg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--bare des infos relative-->
+                    <div class="asid">
+                        <div class="notes nn">
+                            <h4 class="n1">aucun élève selectionner</h4>
+
+                            <div class="add_note">
+                                <label for="ajouter_note">attribuer une note a cet eleve</label>
+                                <input placeholder="note" type="number" name="ajouter_note" id="ajouter_note">
+                                <button class="add_note_btn">+</button> <button class="delet_note_btn">-</button>
+                            </div>
+                            <h1 class="points"> <span class="ptn"> 00</span><span class="dmn">Ptn</span></h1>
+                            <hr>
+                            <h1 class="moy">00<span class="dmn">dMn</span></h1>
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf green"></div>
+                            <p>la moyenne de classe</p>
+                            <h1 class="myenne__classe"></h1><sup>dMn</sup>
+                        </div>
+
+                        <div class="notes">
+                            aucun élève selectionner
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf">
+                                <img src="assets/img/icons/green.png" alt="">
+                            </div>
+                            <p>la plus forte moyenne</p>
+                            <h1 class="plus_forte_n">00</h1><sup>dMn</sup>
+                        </div>
+
+                        <div class="notes">
+                            <div class="notesf">
+                                <img src="assets/img/icons/red.png" alt="">
+                            </div>
+                            <p>la plus faible moyenne</p>
+                            <h1 class="plus_faible_n">00</h1><sup>dMn</sup>
+                        </div>
+
+                    </div>
+                </div>
+
+                <body>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal_liste">
+        <div class="bar">
+            <div class="close_liste">x</div>
+            <button class="print">imprimer</button>
+        </div>
+        <h1 class="classe_name"></h1>
+        <div class="table">
+
+            <table>
+                <thead>
+
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="lock-screen dislock">
+        <div class="lock-screen-in">
+            <div class="dislocker_form">
+                <input placeholder="Mot de passe" type="password" name="m" class="password" id="password" />
+                <button id="dislock_btn">deblocker</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="assets/js/logic.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    </body>
+
+</html>

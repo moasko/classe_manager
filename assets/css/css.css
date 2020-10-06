@@ -1,0 +1,41 @@
+:root {
+    --red: rgb(255, 0, 55);
+}
+
+body {
+    font-size: 11px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+}
+
+
+/*******COLORS******/
+
+.red {
+    box-shadow: 0px 0px 5px var(--red);
+    background-color: var(--red);
+}
+
+.petit-btn-rond {
+    color: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.moyen-btn-rond {
+    color: #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.grand-btn-rond {
+    color: #fff;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}

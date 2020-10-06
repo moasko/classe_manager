@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>scool manager</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="parametres-inner">
+        <div class="sidebar-parames">
+            <div class="profile">
+                <a href="index.html">retour</a>
+                <h4>moasko</h4>
+                <p>informatique</p>
+            </div>
+            <a href="#param_screen1">Information personnel</a>
+            <a href="#param_screen2">gestion</a>
+            <a href="#param_screen3">anne Solaire</a>
+            <a href="#param_screen4">Securiter</a>
+        </div>
+        <div class="params-layer">
+            <div id="param_screen1" class="screen">
+                <div class="screen-in flex">
+                    <div class="demis">
+                        <h1>editer infos</h1>
+                        <div class="formg">
+                            <label for="nom">nom</label>
+                            <input class="demis-input" value="" type="text" data_key="nom" name="nom" id="nom">
+                            <button class="button">ok</button>
+                        </div>
+
+                        <div class="formg">
+                            <label for="n">prenom</label>
+                            <input class="demis-input" data_key="prenom" value="" type="text" name="n" id="n">
+                            <button class="button">ok</button>
+                        </div>
+
+                        <div class="formg">
+                            <label for="n">sex</label>
+                            <select name="sel" id="sex" data_key="sex">
+                            <option value="homme">H</option>
+                            <option value="femme">F</option>
+                        </select>
+                            <button class="button">ok</button>
+                        </div>
+                    </div>
+
+                    <div class="demis actu border">
+                        <h1>infos actuel</h1>
+
+                        <div class="actuel-nom">Nom : moasko</div>
+
+                        <div class="actuel-prenom">PreNom : abdoul</div>
+                        <div class="actuel-sex">sex : H</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="param_screen2" class="screen">
+                <div class="screen-in flex">
+                    <div class="demis">
+                        <h1>editer infos</h1>
+
+                        <div class="formg">
+                            <label for="decoupage"> selectionnez le mode de decoupage de l'année scolaire</label>
+                            <select name="decoupage" id="decoupage" data_key="decoupage">
+                            <option value="1">block</option>
+                            <option value="2">semestre</option>
+                            <option value="3">trimestre</option>
+                        </select>
+                            <button class="button">ok</button>
+                        </div>
+                    </div>
+
+                    <div class="demis actu border">
+                        <h1>infos actuel</h1>
+                        <div class="actuel-nom">Nom : moasko</div>
+                        <div class="actuel-prenom">PreNom : abdoul</div>
+                        <div class="actuel-sex">sex : H</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="param_screen3" class="screen">
+                <div class="screen-in flex">
+                    <div class="demis">
+                        <h1>editer infos</h1>
+
+                        <div class="formg">
+                            <label for="add_etabli">Ajouter des etablimments</label>
+                            <input class="demis-input" id="add_etabli_input" data_key="add_etablissement" value="" type="text">
+                            <button class="ajouter_etabl_btn">ajouter</button>
+                        </div>
+
+                        <h4>liste des etablissments</h4>
+                        <ul class="aficher_liste_etablissements">
+
+                        </ul>
+                    </div>
+                    <div class="demis actu border">
+                        <h1>infos actuel</h1>
+
+                        <h4>liste des classes</h4>
+                        <div class="formg alignedInputs">
+                            <button class="ajouter_classes_btn">ajouter</button>
+                            <input class="demis-input" id="add_classes_input" data_key="add_classes" value="" type="text">
+                        </div>
+                        <ul class="aficher_liste_classe">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="param_screen4" class="screen">
+                <div class="screen-in flex">
+                    <div class="demis">
+                        <h1>editer infos</h1>
+                        <div class="formg">
+                            <label for="password">mot de passe de verouillage</label>
+                            <input value="" type="text" data_key="password" name="password" id="password">
+                            <button class="button">ok</button>
+                        </div>
+
+                        <div class="formg">
+                            <span>Dfinir un temp de verouillage automatique en cas d'inactiviter en <strong>minutes</strong></span>
+                            <label for="passeword">temp de veroillage</label>
+                            <input value="1" min="1" max="5" data_key="temps" type="number" name="temps" id="temps">
+                            <button class="button">ok</button>
+                        </div>
+
+                    </div>
+
+                    <div class="demis actu border">
+                        <h1>infos actuel</h1>
+                        <div class="actuel_password"> mot de passe de verouillage : <strong></strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/parametres.js"></script>
+</body>
+
+</html>

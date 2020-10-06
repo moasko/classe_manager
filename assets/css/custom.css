@@ -1,0 +1,24 @@
+.form__body {
+    color: white;
+    margin: auto;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: orangered;
+}
+
+.screenIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.perameters {
+    text-transform: capitalize;
+}
+
+.elev {
+    width: 100%;
+    background-color: white;
+}
