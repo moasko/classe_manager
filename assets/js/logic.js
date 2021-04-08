@@ -163,11 +163,11 @@ async function gestionPuce() {
         content += `
 <div class="rott">
 <div class="rot"> 
-<span>${e}</span>
+<span>${e.etabName}</span>
 <img class="puc" src="assets/img/icons/down.svg" alt="">
 </div>
-<div id=${e} class="wr">
-${[...new Set(ELEVES_DE(e).map(e => e.classe))].map(r => {
+<div id=${e.etabName} class="wr">
+${e.classes.map(r => {
             return `<div class="select a" id=${r}>${r}</div>`
         }).join('')}
 </div>
@@ -411,22 +411,23 @@ delet_note_btn.onclick = () => {
 
 //cree la liste des classes et etablissements
 let etabContent = ''
-let classeContent = ''
-
+let cca = ''
 let DomEtablissement = $('#etablissement')
 let DomClasse = $('#classe')
 
 JSON.parse(SELECT_FROM('liste_etabs_add')).map(e => {
-    etabContent += `<option value=${e.replace(/\s+/g, "")}>${e}</option>`
+    etabContent += `<option value=${(e.etabName).replace(/\s+/g, "")}>${e.etabName}</option>`
     DomEtablissement.innerHTML = etabContent
+  
 })
+  $('#classe').value = SELECT_FROM('actuel_etablissement')
 
 
-JSON.parse(SELECT_FROM('liste_classes_add')).map(e => {
-    classeContent += `<option value=${e.replace(/\s+/g, "")}>${e}</option>`
-    DomClasse.innerHTML = classeContent
-})
 
+
+   
+
+  
 
 
 
