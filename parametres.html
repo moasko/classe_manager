@@ -24,13 +24,12 @@
             <div class="profile">
                 <div class="bar_retour">
                     <a href="index.html"><i class="icofont-long-arrow-left"></i></a>
-                    <p>
-                        <-*Retour*-</p>
+                    
                 </div>
                 <h4 class="nom">inconnue</h4>
                 <p class="matiere">pas definit</p>
             </div>
-            <a href="#param_screen1"><i class="icofont-teacher"></i>  Information personnel</a>
+            <a href="#param_screen1"><i class="icofont-teacher"></i> Information personnel</a>
             <a href="#param_screen2">gestion</a>
             <a href="#param_screen3">anne Solaire</a>
             <a href="#param_screen4"><i class="icofont-ssl-security"></i> Securiter</a>
@@ -43,22 +42,25 @@
                         <div class="formg">
                             <label for="nom">nom</label>
                             <input class="demis-input" value="" type="text" data_key="nom" name="nom" id="nom">
-                            <button class="button">ok</button>
+                            <button class="button okbtn">ok</button>
                         </div>
 
                         <div class="formg">
                             <label for="n">prenom</label>
                             <input class="demis-input" data_key="prenom" value="" type="text" name="n" id="n">
-                            <button class="button">ok</button>
+                            <button class="button okbtn">ok</button>
                         </div>
 
                         <div class="formg">
-                            <label for="n">sex</label>
-                            <select name="sel" id="sex" data_key="sex">
-                            <option value="homme">H</option>
-                            <option value="femme">F</option>
-                        </select>
-                            <button class="button">ok</button>
+                            <div class="goupper">
+                                <label for="n">sex</label>
+                                <select name="sel" id="sex" data_key="sex">
+                                    <option value="homme">H</option>
+                                    <option value="femme">F</option>
+                                </select>
+                                <button class="button okbtn">ok</button>
+                            </div>
+
                         </div>
 
 
@@ -80,26 +82,37 @@
                 <div class="screen-in flex">
                     <div class="demis">
                         <h1>gestion</h1>
+
                         <div class="formg">
-                            <label for="decoupage"> selectionnez le mode de decoupage de l'année scolaire</label>
-                            <select name="decoupage" id="decoupage" data_key="decoupage">
-                            <option value="1">block</option>
-                            <option value="2">semestre</option>
-                            <option value="3">trimestre</option>
-                        </select>
-                            <button id="mode" class="button">ok</button>
+                            <div class="goupper">
+                                <label for="decoupage"> selectionnez le mode de decoupage de l'année scolaire</label>
+                                <select name="decoupage" id="decoupage" data_key="decoupage">
+                                    <option value="1">block</option>
+                                    <option value="2">semestre</option>
+                                    <option value="3">trimestre</option>
+                                </select>
+                                <button id="mode" class="button okbtn">ok</button>
+                            </div>
+
                         </div>
 
                         <div class="formg">
                             <label for="matiere">matiere prise</label>
-                            <input class="demis-input" data_key="matiere" value="" type="text" name="matiere" id="matiere">
-                            <button class="button">ok</button>
+                            <div class="goupper">
+                                <input class="demis-input" data_key="matiere" value="" type="text" name="matiere"
+                                    id="matiere">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
                         </div>
 
                         <div class="formg">
                             <label for="coef">coeficient de la matiere</label>
-                            <input class="demis-input" data_key="coef" value="" type="number" name="coef" id="coef">
-                            <button class="button">ok</button>
+                            <div class="goupper">
+                                <input class="demis-input" data_key="coef" value="" type="number" name="coef" id="coef">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
                         </div>
                     </div>
 
@@ -119,7 +132,7 @@
 
 
                                 <div class="box3">
-                                    <label for="trois" class="trois"> +  Trimestre3</label>
+                                    <label for="trois" class="trois"> + Trimestre3</label>
                                     <input value="1" type="number" name="trois" id="trois">
                                 </div>
                                 =MGA
@@ -138,7 +151,8 @@
 
                         <div class="formg alignedInputs">
                             <button class="ajouter_etabl_btn">ajouter</button>
-                            <input class="demis-input" id="add_etabli_input" data_key="add_etablissement" value="" type="text">
+                            <input class="demis-input" id="add_etabli_input" data_key="add_etablissement" value=""
+                                type="text">
                         </div>
 
                         <h4>liste des etablissments</h4>
@@ -152,7 +166,8 @@
                         <h4 class="indic_classe">liste des classes</h4>
                         <div class="formg alignedInputs clssees">
                             <button class="ajouter_classes_btn">ajouter</button>
-                            <input class="demis-input" id="add_classes_input" data_key="add_classes" value="" type="text">
+                            <input class="demis-input" id="add_classes_input" data_key="add_classes" value=""
+                                type="text">
                         </div>
                         <ul class="aficher_liste_classe">
 
@@ -166,15 +181,22 @@
                         <h1>editer infos</h1>
                         <div class="formg">
                             <label for="password">mot de passe de verouillage</label>
-                            <input value="" type="text" data_key="password" name="password" id="password">
-                            <button class="button">ok</button>
+                            <div class="goupper">
+                                <input value="" type="text" data_key="password" name="password" id="password">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
                         </div>
 
                         <div class="formg">
-                            <span>Dfinir un temp de verouillage automatique en cas d'inactiviter en <strong>minutes</strong></span>
+                            <span>Dfinir un temp de verouillage automatique en cas d'inactiviter en
+                                <strong>minutes</strong></span>
                             <label for="passeword">temp de veroillage</label>
-                            <input value="1" min="1" max="5" data_key="temps" type="number" name="temps" id="temps">
-                            <button class="button">ok</button>
+                            <div class="goupper">
+                                <input value="1" min="1" max="5" data_key="temps" type="number" name="temps" id="temps">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
                         </div>
 
                     </div>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>scool manager</title>
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/icofont.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,7 +66,7 @@
             <div class="moadal_in">
                 <div class="former">
                     <div class="formulair_titre">
-                        ajouter un eleves
+                        Ajouter un élève
                     </div>
 
                     <div>
@@ -80,28 +81,16 @@
                                 <label for="prenom">prenom</label>
                                 <input type="text" name="prenom" id="prenom">
                             </div>
-
-
                         </div>
-
-
 
                         <div class="formg">
                             <label for="etablissement">etablissement</label>
-
-                            <select id="etablissement" name="etablissement">
-                        </select>
+                            <input disabled type="text" id="etablissement" name="etablissement">
                         </div>
-
 
                         <div class="formg">
                             <label for="classe">classe</label>
-                            <select name="classe" id="classe">
-                            <option value=""></option>
-                            <option value="tleB">tle B</option>
-                            <option value="tlBa">tle Ba</option>
-                            <option value="2ndBb">2nd Bb</option>
-                        </select>
+                            <input disabled type="text" name="classe" id="classe">
                         </div>
 
 
@@ -121,7 +110,7 @@
         <!--la tête de l'app-->
         <header>
             <div class="btnplus">
-                <button class="pea">pae</button>
+                <button class="pea"><i class="icofont-navigation-menu"></i></button>
             </div>
             <!--logo-->
             <div class="label__conter">
@@ -144,12 +133,12 @@
 
 
                 <div class="vertical_nav_btns opened">
-                    <button class="btn_closer_params">X</button>
+                    <button class="btn_closer_params"><i class="icofont-close-line-circled"></i></button>
                     <div class="vertical-in">
                         <button class="eleve_add_modal">+ <span>ajouter un eleve</span></buttonn>
-                        <button class="listes">L <span>afficher la liste de cette calsse</span></button>
-                        <button class="classement">C <span>fair le classement de cette classe</span></button>
-                        <a class="btn_rond" href="parametres.html">P <span>parametres</span></a>
+                        <button class="listes"><i class="icofont-list"></i> <span>afficher la liste de cette calsse</span></button>
+                        <button class="classement"><i class="icofont-listing-number"></i> <span>fair le classement de cette classe</span></button>
+                        <a class="btn_rond" href="parametres.html"><i class="icofont-settings-alt"></i> <span>parametres</span></a>
                     </div>
                 </div>
 

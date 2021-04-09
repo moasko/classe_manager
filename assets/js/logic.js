@@ -180,14 +180,15 @@ ${e.classes.map(r => {
 gestionPuce()
 
 
-function deletee(table, element) {
+function deleteElement(table, element) {
     const ctu = [...JSON.parse(SELECT_FROM(table))]
-    let index = ctu.indexOf(element)
-    ctu.splice(1, index)
-    INSERT(table, JSON.stringify([...ctu]))
+    //let index = ctu.indexOf(element)
+    //ctu.splice(1, index)
+    //INSERT(table, JSON.stringify([...ctu]))
+    console.log(ctu)
 }
 
-deletee("liste_classes_add", "1erA")
+
 
 
 let etab_classe = (etablissement, classe) => {
@@ -415,19 +416,11 @@ let cca = ''
 let DomEtablissement = $('#etablissement')
 let DomClasse = $('#classe')
 
-JSON.parse(SELECT_FROM('liste_etabs_add')).map(e => {
-    etabContent += `<option value=${(e.etabName).replace(/\s+/g, "")}>${e.etabName}</option>`
-    DomEtablissement.innerHTML = etabContent
-  
-})
-  $('#classe').value = SELECT_FROM('actuel_etablissement')
+$('#etablissement').value= SELECT_FROM('actuel_etablissement')
+$('#classe').value = SELECT_FROM('actuel_classe')
 
 
 
-
-   
-
-  
 
 
 

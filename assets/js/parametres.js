@@ -40,14 +40,35 @@ btns.forEach(btn => {
 const etabs = JSON.parse(selectData("liste_etabs_add")) || [],
     classes = JSON.parse(selectData("liste_classes_add")) || []
 
-const printEtabs = () => {
+
+function displayEtabsClasses(classeObject) {
+    let classesHTML = ''
+    classeObject.map(e => {
+        classesHTML += `<li class="classesDisplayerListe" id=${ereplace(/\s+/g, "")}><span>${e}</span><span>X</span></li>`
+    })
+
+    return classesHTML
+}
+const  printEtabs = async() => {
     let cont1 = ''
-    etabs.map(e => {
-        cont1 += `<li class="etabsInDom" id=${e.replace(/\s+/g, "").toLowerCase()}>${e}</li>`
+  await etabs.map(async e => {
+        cont1 += `<li class="etabsInDom"  id=${(e.etabName).replace(/\s+/g, "").toLowerCase()}><span>${e.etabName}</span><span><i class="icofont-close-line-circled"></i></span></li>`
+     await pri()
     })
     document.querySelector('.aficher_liste_etablissements').innerHTML = cont1
 }
 
+
+function pri() {
+    let etabsInDom = document.querySelectorAll('.etabsInDom')
+   document.querySelectorAll('.etabsInDom').forEach(e => {
+        e.addEventListener('click', () => {
+            console.log(e.id)
+        }) 
+    })
+}
+
+pri()
 const printClasses = () => {
     let cont2 = ''
     classes.map(e => {
@@ -59,7 +80,11 @@ const printClasses = () => {
 document.querySelector('.ajouter_etabl_btn').addEventListener('click', () => {
     let thisETab = document.querySelector('#add_etabli_input').value
     if (thisETab != '') {
-        etabs.push(thisETab.replace(/\s+/g, ""))
+        let etablss = {
+            "etabName": `${thisETab.replace(/\s+/g, '')}`,
+            "classes": ["tlr","ddd"]
+        }
+        etabs.push(etablss)
         insert("liste_etabs_add", JSON.stringify(etabs))
         printEtabs()
         pri()
@@ -68,6 +93,17 @@ document.querySelector('.ajouter_etabl_btn').addEventListener('click', () => {
         return
     }
 })
+
+
+
+function deletee(table, element) {
+    const ctu = [...JSON.parse(selectData(table))]
+    let index = ctu.indexOf(element)
+    ctu.splice(1, index)
+    insert(table, JSON.stringify([...ctu]))
+}
+
+
 
 
 document.querySelector('.ajouter_classes_btn').addEventListener('click', () => {
@@ -83,14 +119,6 @@ document.querySelector('.ajouter_classes_btn').addEventListener('click', () => {
     }
 })
 
-function pri() {
-    let etabsInDom = document.querySelectorAll('.etabsInDom')
-    etabsInDom.forEach(e => {
-        e.addEventListener('click', () => {
-            console.log(e.id)
-        })
-    })
-}
 
 
 window.onload = () => {
