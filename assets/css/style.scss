@@ -704,8 +704,7 @@ td.no {
     z-index: 3333;
     background: transparent;
     backdrop-filter: blur(4px);
-    }
-
+}
 
 .modal {
     z-index: 14444;
@@ -722,7 +721,7 @@ td.no {
 .former {
     position: relative;
     background-color: #fff;
-    padding:1rem ;
+    padding: 1rem;
     width: 30%;
     height: 80%;
 }
@@ -737,15 +736,12 @@ td.no {
 }
 
 .formulair_titre {
-   
     margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase;
     font-size: 25px;
     color: rgb(2, 41, 124);
-  
     width: 100%;
-
 }
 
 .vertical_nav_btns {
@@ -761,7 +757,7 @@ td.no {
         display: flex;
         justify-content: center;
         flex-direction: column;
-    align-items: center;
+        align-items: center;
         button,
         a {
             cursor: pointer;
@@ -812,10 +808,10 @@ td.no {
     margin-bottom: 35px;
     text-align: center;
     padding-bottom: 20px;
-border: none;
-display: flex;
-align-items: center;
-justify-content: center;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .formg {
@@ -825,7 +821,6 @@ justify-content: center;
 
 .formg>input {
     border: none;
-
     background-color: #c7d8d4;
     color: #424242;
     width: 100%;
@@ -865,7 +860,6 @@ justify-content: center;
 .btns {
     bottom: 0;
     width: 100%;
-
     justify-content: space-around;
     display: flex;
 }
@@ -1020,6 +1014,14 @@ th {
 
 
 /********liste modale******/
+
+.delete_etablissement_button {
+    cursor: pointer;
+}
+
+.activated {
+    background-color: #7a8b9b!important;
+}
 
 .bar {
     display: flex;
@@ -1222,25 +1224,24 @@ th {
     }
 }
 
-
-.okbtn{
+.okbtn {
     width: 30px;
     height: 30px;
     font-size: 12px;
     border-radius: 50%;
 }
 
-.goupper{
+.goupper {
     display: flex;
     align-items: center;
-
-    input{
+    input {
         width: 80%;
         padding: .5rem;
         font-size: 20px;
         color: #fff;
     }
 }
+
 
 /****types of inputs *****/
 
@@ -1334,11 +1335,10 @@ th {
 
 .pea {
     cursor: pointer;
-background-color: transparent;
-border: none;
+    background-color: transparent;
+    border: none;
     font-size: 30px;
     color: #fff;
-
 }
 
 
@@ -1519,6 +1519,10 @@ label {
     }
 }
 
+.activeEtablissementClasse {
+    background-color: #0053a0 !important;
+}
+
 .avide {
     font-size: 12px;
     padding: 4px;
@@ -1537,4 +1541,30 @@ label {
         height: 100%;
         border: 0px;
     }
+}
+
+.selectes_types {
+    .formga {
+        position: relative;
+        input {
+            background-color: red;
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.settingsLayer {
+    transition: .5s;
+    position: fixed;
+    transform: translate(-100%);
+    z-index: 150;
+    width: 100%;
+    background: rgb(1, 23, 41);
+}
+
+.openSettingsLayer {
+    transform: translate(0%)!important;
 }

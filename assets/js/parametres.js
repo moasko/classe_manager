@@ -49,11 +49,11 @@ function displayEtabsClasses(classeObject) {
 
     return classesHTML
 }
-const  printEtabs = async() => {
+const printEtabs = async() => {
     let cont1 = ''
-  await etabs.map(async e => {
+    await etabs.map(async e => {
         cont1 += `<li class="etabsInDom"  id=${(e.etabName).replace(/\s+/g, "").toLowerCase()}><span>${e.etabName}</span><span><i class="icofont-close-line-circled"></i></span></li>`
-     await pri()
+        await pri()
     })
     document.querySelector('.aficher_liste_etablissements').innerHTML = cont1
 }
@@ -61,10 +61,10 @@ const  printEtabs = async() => {
 
 function pri() {
     let etabsInDom = document.querySelectorAll('.etabsInDom')
-   document.querySelectorAll('.etabsInDom').forEach(e => {
+    document.querySelectorAll('.etabsInDom').forEach(e => {
         e.addEventListener('click', () => {
             console.log(e.id)
-        }) 
+        })
     })
 }
 
@@ -82,7 +82,7 @@ document.querySelector('.ajouter_etabl_btn').addEventListener('click', () => {
     if (thisETab != '') {
         let etablss = {
             "etabName": `${thisETab.replace(/\s+/g, '')}`,
-            "classes": ["tlr","ddd"]
+            "classes": ["tlr", "ddd"]
         }
         etabs.push(etablss)
         insert("liste_etabs_add", JSON.stringify(etabs))

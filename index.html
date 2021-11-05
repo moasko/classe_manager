@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>scool manager</title>
+    <link href="assets/css/css.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/icofont.min.css" rel="stylesheet">
 </head>
@@ -20,15 +21,15 @@
             <div class="edit--body">
 
                 <div class="input-flex">
-                    <input type="text" name="nom" id="edite_nom">
-                    <input type="text" name="prenom" id="edite_prenom">
+                    <input type="text" name="edite_nom" id="edite_nom">
+                    <input type="text" name="edite_prenom" id="edite_prenom">
                 </div>
 
                 <div class="input-flex">
                     <select name="etab" id="edite_etablissement">
-                            <option value="samaritin">samaritin</option>
-                            <option value="istco">istco</option>
-                            <option value="isg">isg</option>
+                        <option value="samaritin">samaritin</option>
+                        <option value="istco">istco</option>
+                        <option value="isg">isg</option>
                     </select>
                     <select name="class" id="edite_classe">
                         <option value="tleB">tle B</option>
@@ -52,7 +53,6 @@
 
 
     <div class="absolut_ajouts">
-
         <!--notifications-->
         <div class="not">
             <div class="notifications">
@@ -73,7 +73,7 @@
                         <div class="double">
                             <div class="formg">
                                 <label for="nom">nom</label>
-                                <input type="text" name="nom" id="nom">
+                                <input type="text" name="name" id="name">
                             </div>
 
 
@@ -106,6 +106,197 @@
         </div>
     </div>
 
+    <div class="settingsLayer">
+        <div class="parametres-inner">
+            <div class="sidebar-parames">
+                <div class="profile">
+                    <div class="bar_retour">
+                        <div class="closeSettingsLayer"><i class="icofont-long-arrow-left"></i></div>
+
+                    </div>
+                    <h4 class="nom">inconnue</h4>
+                    <p class="matiere">pas definit</p>
+                </div>
+                <a href="#param_screen1"><i class="icofont-teacher"></i> Information personnel</a>
+                <a href="#param_screen2">gestion</a>
+                <a href="#param_screen3">anne Solaire</a>
+                <a href="#param_screen4"><i class="icofont-ssl-security"></i> Securiter</a>
+            </div>
+            <div class="params-layer">
+                <div id="param_screen1" class="screen">
+                    <div class="screen-in flex">
+                        <div class="demis">
+                            <h1>editer infos</h1>
+                            <div class="formg">
+                                <label for="nom">nom</label>
+                                <input class="demis-input" value="" type="text" data_key="nom" name="nom" id="nom">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
+                            <div class="formg">
+                                <label for="n">prenom</label>
+                                <input class="demis-input" data_key="prenom" value="" type="text" name="n" id="n">
+                                <button class="button okbtn">ok</button>
+                            </div>
+
+                            <div class="formg">
+                                <div class="goupper">
+                                    <label for="n">sex</label>
+                                    <select name="sel" id="sex" data_key="sex">
+                                        <option value="homme">H</option>
+                                        <option value="femme">F</option>
+                                    </select>
+                                    <button class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="demis actu border">
+                            <h1>infos actuel</h1>
+
+                            <div class="actuel-nom">Nom : moasko</div>
+
+                            <div class="actuel-prenom">PreNom : abdoul</div>
+                            <div class="actuel-sex">sex : H</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="param_screen2" class="screen">
+                    <div class="screen-in flex">
+                        <div class="demis">
+                            <h1>gestion</h1>
+
+                            <div class="formg">
+                                <div class="goupper">
+                                    <label for="decoupage"> selectionnez le mode de decoupage de l'année scolaire</label>
+                                    <select name="decoupage" id="decoupage" data_key="decoupage">
+                                        <option value="1">block</option>
+                                        <option value="2">semestre</option>
+                                        <option value="3">trimestre</option>
+                                    </select>
+                                    <button id="mode" class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+
+                            <div class="formg">
+                                <label for="matiere">matiere prise</label>
+                                <div class="goupper">
+                                    <input class="demis-input" data_key="matiere" value="" type="text" name="matiere" id="matiere">
+                                    <button class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+
+                            <div class="formg">
+                                <label for="coef">coeficient de la matiere</label>
+                                <div class="goupper">
+                                    <input class="demis-input" data_key="coef" value="" type="number" name="coef" id="coef">
+                                    <button class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="demis actu border">
+                            <h1>infos actuel</h1>
+                            <div class="modaliteCalcule">
+                                <div class="claculIn">
+                                    <div class="box1">
+                                        <label for="un" class="un"></label>
+                                        <input value="1" type="number" name="un" id="un">
+                                    </div>
+
+                                    <div class="box2">
+                                        <label for="deux" class="deux">+ Trimestre2 x</label>
+                                        <input value="1" type="number" name="deux" id="deux">
+                                    </div>
+
+
+                                    <div class="box3">
+                                        <label for="trois" class="trois"> + Trimestre3</label>
+                                        <input value="1" type="number" name="trois" id="trois">
+                                    </div>
+                                    =MGA
+                                </div>
+                                <button class="modeVlide">valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="param_screen3" class="screen">
+                    <div class="screen-in flex">
+                        <div class="demis">
+                            <h1>editer infos</h1>
+                            <input type="hidden" id="selectedEtablissementId" name="dd">
+                            <div class="formg alignedInputs">
+                                <button class="add_new_etablissement_btn">ajouter</button>
+                                <input class="demis-input" id="add_etablissement_input" type="text">
+                            </div>
+
+                            <h4>liste des etablissments</h4>
+                            <ul class="aficher_liste_etablissements">
+
+                            </ul>
+                        </div>
+                        <div class="demis actu border">
+                            <h1>infos actuel</h1>
+
+                            <h4 class="indic_classe">liste des classes de <span class="actualeta"></span> </h4>
+                            <div class="formg alignedInputs clssees">
+                                <button class="add_classes_btn">ajouter</button>
+                                <input class="demis-input" id="add_classes_input" data_key="add_classes" value="" type="text">
+                            </div>
+                            <ul class="aficher_liste_classe">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="param_screen4" class="screen">
+                    <div class="screen-in flex">
+                        <div class="demis">
+                            <h1>editer infos</h1>
+                            <div class="formg">
+                                <label for="password">mot de passe de verouillage</label>
+                                <div class="goupper">
+                                    <input value="" type="text" data_key="passwordp" name="passwordp" id="passwordp">
+                                    <button class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+
+                            <div class="formg">
+                                <span>Dfinir un temp de verouillage automatique en cas d'inactiviter en
+                                    <strong>minutes</strong></span>
+                                <label for="passeword">temp de veroillage</label>
+                                <div class="goupper">
+                                    <input value="1" min="1" max="5" data_key="temps" type="number" name="temps" id="temps">
+                                    <button class="button okbtn">ok</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="demis actu border">
+                            <h1>infos actuel</h1>
+                            <div class="actuel_password"> mot de passe de verouillage : <strong></strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="app-ecran">
         <!--la tête de l'app-->
         <header>
@@ -127,23 +318,28 @@
         </header>
         <!--le corps de l'app-->
         <div id="layout-container">
+
             <div id="sidebar">
                 <h2>ETABLISSEMENTS</h2>
                 <div class="sidbar-content"></div>
-
 
                 <div class="vertical_nav_btns opened">
                     <button class="btn_closer_params"><i class="icofont-close-line-circled"></i></button>
                     <div class="vertical-in">
                         <button class="eleve_add_modal">+ <span>ajouter un eleve</span></buttonn>
-                        <button class="listes"><i class="icofont-list"></i> <span>afficher la liste de cette calsse</span></button>
-                        <button class="classement"><i class="icofont-listing-number"></i> <span>fair le classement de cette classe</span></button>
-                        <a class="btn_rond" href="parametres.html"><i class="icofont-settings-alt"></i> <span>parametres</span></a>
+                            <button class="listes"><i class="icofont-list"></i> <span>afficher la liste de cette
+                                    calsse</span></button>
+                        <button class="classement"><i class="icofont-listing-number"></i> <span>fair le classement
+                                    de cette classe</span></button>
+                        <button class="btn_rond openSettingsBtn"><i class="icofont-settings-alt"></i>
+                                <span>parametres</span></button>
                     </div>
                 </div>
 
 
             </div>
+
+
             <!--87399922-->
             <div class="conter">
                 <div class="ativ">
@@ -164,11 +360,22 @@
                             <h4 class="n1">aucun élève selectionner</h4>
 
                             <div class="add_note">
+                                <div class="selectes_types">
+
+                                    <div class="formga">
+                                        <input type="radio" name="type" id="1/5">
+                                        <label for="1/5">note/10</label>
+                                    </div>
+                                    <div class="formga">
+                                        <input type="radio" name="type" id="1">
+                                        <label for="1">note/20</label>
+                                    </div>
+                                </div>
                                 <label for="ajouter_note">attribuer une note a cet eleve</label>
                                 <input placeholder="note" type="number" name="ajouter_note" id="ajouter_note">
                                 <button class="add_note_btn">+</button> <button class="delet_note_btn">-</button>
                                 <div class="notedur">
-                                    
+
                                 </div>
                             </div>
                             <h1 class="points"> <span class="ptn"> 00</span><span class="dmn">Ptn</span></h1>
@@ -242,7 +449,8 @@
 
     </div>
     <script src="assets/js/logic.js"></script>
-    <script src="assets/js/script.min.js"></script>
+
+    <script src="script.js"></script>
     </body>
 
 </html>

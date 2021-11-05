@@ -1,14 +1,3 @@
-const ETABLISSEMENTS_LIST = 'ETABLISSEMENTS';
-const CLASSES_LIST = 'CLASSES';
-const LOCKED = 'LOCKED';
-const U_ID = 'UNIC_ID';
-const ELEVES_LISTE = 'ELEVES';
-const CURENT_ETABLISSEMENT = 'CURENT_ETABLISSEMENT';
-const DECOUP = 'DECOUP';
-const SESSION_SCOLAIRE = 'SESSION_SCOLAIRE';
-const SELECTED_SESSION_SCOLAIRE = 'a';
-
-
 function compareValues(key, order = 'asc') {
     return function innerSort(a, b) {
         if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -30,6 +19,7 @@ function compareValues(key, order = 'asc') {
         );
     };
 }
+
 
 
 
@@ -84,14 +74,6 @@ const SELECT_FROM = (key) => {
     }
 }
 
-/**
- * verifié si une table existe dans la db
- * @param {String} tableName
- */
-function exist_in_db(tableName) {
-    return SELECT_FROM(tableName) != null
-}
-
 //declaration des variables 
 let dom_liste_eleves = $(".tableau")
 const btn_ajouter_eleves = $('.ajouter_elev')
@@ -103,11 +85,12 @@ const btn_ajouter_eleves = $('.ajouter_elev')
  * @param {Array} select_data 
  */
 let createClasseListeOf = (select_data) => {
-        let printDataInDom = ''
-        printDataInDom = select_data.map((data_items, index) => {
-                    let eleve_notes = data_items.notes
-                    let notes = eleve_notes[SELECT_FROM("decoup")]
-                    return `
+    let printDataInDom = ''
+    let sl = select_data.sort(compareValues('nom'))
+    printDataInDom = select_data.map((data_items, index) => {
+        let eleve_notes = data_items.notes
+        let notes = eleve_notes[SELECT_FROM("decoup")]
+        return `
     <div class="eleve" id=${data_items.id}>
     <div class="rang">${index + 1}</div>
     <div class="nom_eleve">${data_items.nom} ${data_items.prenom}</div>
@@ -116,8 +99,8 @@ let createClasseListeOf = (select_data) => {
     <div class="view_option">o</div>
     <div class="poper_view">
     <button id=${data_items.id} class="editer_eleve">editer</button>
-    <button id=${data_items.id} class="suprimer_eleve">suprimer</button>
-    </div> 
+    <button  id=${data_items.id} class="suprimer_eleve">suprimer</button>
+    </div>
     </div>
     </div>`
     }).join('')
@@ -125,12 +108,11 @@ let createClasseListeOf = (select_data) => {
 }
 
 
-
 /**
 * recupere les eleves d 'un etablissement spesifique
 * @param {string} etablissement_key 
 */
-let ELEVES_OF_CLASSE = (etablissement_key) => data.filter(eleves => eleves.etablissement == etablissement_key)
+let ELEVES_DE = (etablissement_key) => data.filter(eleves => eleves.etablissement == etablissement_key)
 
 
 
@@ -139,133 +121,10 @@ let ELEVES_OF_CLASSE = (etablissement_key) => data.filter(eleves => eleves.etabl
  * @param {object} dat les donner a filtrer
  * @return {array}
  */
-let listerEtablisselents = () => {
-    let etablissements = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST)) || []
+let listerEtablisselents = async() => {
+    let etablissements = await JSON.parse(SELECT_FROM('liste_etabs_add')) || []
     return etablissements
 }
-
-function etablissementExistin(etabName) {
-    let exstingetabs = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST))
-    let y = exstingetabs.map(e => {
-        return e.name
-    })
-    return y.includes(etabName)
-}
-
-
-//les fonction pour ajouter afficher et suprimer des etablissements
-
-function refreshEtablissementParamettersListe(){
-    document.querySelectorAll('.etabsInDom').forEach(e => {
-        e.addEventListener('click', () => {
-            document.querySelectorAll('.etabsInDom').forEach(a => {
-                a.classList.remove('activated')
-            })
-            e.classList.add('activated')
-            document.querySelector('#selectedEtablissementId').value = e.id
-            document.querySelector('.actualeta').innerHTML = e.id
-        })
-    })
-}
-refreshEtablissementParamettersListe()
-
- 
-function toggleAll(allElements,classe){
-let elements = document.querySelectorAll(allElements)
-[elements].map(element=>{
-    if(element.classList.contains(classe)){
-        element.classList.remove(classe)
-    }
-    element.onclick = function(){
-element.classList.add(classe)
-    }
-})
-}
-
-const creatEtablissement = (etablissementName) => {
-    try {
-        if (etablissementName) {
-            if (exist_in_db(ETABLISSEMENTS_LIST)) {
-                if (!etablissementExistin(etablissementName)) {
-                    let etabs = SELECT_FROM(ETABLISSEMENTS_LIST);
-                    let stingfy = JSON.parse(etabs)
-                    let etab_to_insert = [{ "name": etablissementName, "classes": [] }, ...stingfy]
-                    INSERT(ETABLISSEMENTS_LIST, JSON.stringify(etab_to_insert))
-                } else {
-                    console.log(`etablissemnt ${etablissementName} existe deja`)
-                }
-            } else {
-                INSERT(ETABLISSEMENTS_LIST, JSON.stringify([{ "name": etablissementName, "classes": [] }]))
-            }
-        }
-    } catch (e) { console.log("une erreure avec l'ajoute d'tablissement" + e) }
-}
-
-$('.add_new_etablissement_btn').addEventListener('click', () => {
-    let add_etablissement_input = $('#add_etablissement_input').value
-    if (add_etablissement_input!= '') {
-        creatEtablissement(add_etablissement_input)
-        gestionPuce()
-        printEtablissement()
-    notification('success', `${add_etablissement_input} a bien ete ajouter a la liste des etablissement`)
-    }else{
-        null
-        notification('fail', 'veillez entre un nom d\'etablissement svp')
-    }
-    setTimeout(()=>{
-            toggleAll('.etabsInDom','activeEtablissementClasse')
-    },20000)
-})
-
-const getEtablissementsListe = () => {
-    let etablissements = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST));
-    return etablissements;
-}
-
-const printEtablissement = async () => {
-    let listeEtalissementInDom = ''
-    await getEtablissementsListe().map(async e => {
-        listeEtalissementInDom += `<li class="etabsInDom"  id=${(e.name).replace(/\s+/g, "").toLowerCase()}><span>${e.name}</span><span classe="delete_etablissement_button"><i class="icofont-close-line-circled"></i></span></li>`
-    })
-    document.querySelector('.aficher_liste_etablissements').innerHTML = listeEtalissementInDom;
-}
-printEtablissement()
-
-
-/* const deletEtablissement = (etablissementName,classeName,remplaced)=>{
-const etablis_liste = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST))
-const finded = etablis_liste.find(e=>e.name == etablissementName)
-.classes.find(r=>r==classeName) 
-
-console.log(finded)
-}
-
-deletEtablissement("itc","moas","tell") */
-/***************************************************************** */
-
-
-// fontions pour ajouter aficher suprimer des classes
-const createClasse = (etablissement, classeName) => {
-    let etablissements = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST))
-    let r = etablissements.filter(e => e.name == etablissement)
-    let s = ((r[0]).classes)
-    s.push(classeName)
-    INSERT(ETABLISSEMENTS_LIST, JSON.stringify(etablissements))
-}
-const add_classes_btn = $('.add_classes_btn')
-
-add_classes_btn.addEventListener('click',()=>{
-const add_classes_input = $('#add_classes_input').value
-const selectedEtablissementId = $('#selectedEtablissementId').value
-if(add_classes_input==''||selectedEtablissementId==''){
-console.log("error")
-}else{
-    createClasse(selectedEtablissementId,add_classes_input)
-    printEtablissement()
-    refreshEtablissementParamettersListe()
-}
-})
-
 
 
 
@@ -281,10 +140,12 @@ function get_notes(id, periode) {
 }
 
 
+
 function notes_additon(notes) {
     let aditioner = notes.reduce((a, b) => a + b)
     return aditioner
 }
+
 
 function get_moyenne(id) {
     let eleve = data.filter(eleve => eleve.id == id)
@@ -302,10 +163,10 @@ async function gestionPuce() {
         content += `
 <div class="rott">
 <div class="rot"> 
-<span>${e.name}</span>
+<span>${e.etabName}</span>
 <img class="puc" src="assets/img/icons/down.svg" alt="">
 </div>
-<div id=${e.name} class="wr">
+<div id=${e.etabName} class="wr">
 ${e.classes.map(r => {
             return `<div class="select a" id=${r}>${r}</div>`
         }).join('')}
@@ -314,46 +175,24 @@ ${e.classes.map(r => {
         sidebar.innerHTML = content
     })
 
-        //selectionne les puces et les deroule au click
-        const rw = document.querySelectorAll('.rott')
-        for (let i = 0; i < rw.length; i++) {
-            rw[i].onclick = () => {
-                let rwh = rw[i].querySelector('.wr')
-                let rwr = rwh.children
-                let r = []
-                for (let i = 0; i < rwr.length; i++) {
-                    let e = rwr[i];
-                    r.push(e.clientHeight)
-                }
-                let mesu = r.reduce((a, b) => a + b)
-                rwh.classList.contains('hop') ? rwh.style.height = mesu + "px" : rwh.style.height = null
-            }
-    
-        }
-        const m = document.querySelectorAll(".puc");
-        for (const pc of m) {
-            pc.parentNode.addEventListener("click", function() {
-    
-                const t = this.lastElementChild;
-                t.classList.toggle("rotat180");
-                this.nextElementSibling.classList.toggle("hop");
-            });
-        }
-    
-        //recuperation de la date
-        const anne = document.querySelector(".annee");
-        const d = new Date();
-        const a = d.getFullYear();
-    
-        anne.innerHTML = `${a - 1}-${a}`;
-    
 }
 
 gestionPuce()
 
 
 
-
+const dit = (mes) => {
+    let msg = new SpeechSynthesisUtterance();
+    let voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[10];
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 1;
+    msg.text = mes;
+    msg.lang = 'fr';
+    speechSynthesis.speak(msg);
+}
+dit("iko di? i faaforo. ni wary quo kèla babièya, en bé yongon toî")
 
 
 
@@ -399,6 +238,8 @@ select.forEach(e => {
         listerEtablisselents()
         para()
     }
+
+
 })
 
 document.querySelector('.listes').onclick = async () => {
@@ -487,7 +328,7 @@ function notification(type, message) {
     not.style.display = "block"
     setTimeout(() => {
         not.style.display = "none"
-    }, 4000)
+    }, 3000)
 }
 
 
@@ -509,7 +350,6 @@ function get_eleve_info() {
         }
     })
 }
-
 
 
 
@@ -606,34 +446,36 @@ $('#classe').value = SELECT_FROM('actuel_classe')
 
 function get_classe_infos() {
     //moyenne de chaque eleves
-    let allElevesNotes = []
+    let mclass = []
     //recupere les notes de chaque eleves
     dataClasse.map(eleves => {
         try {
             let notesAditionEleve = eleves.notes[localStorage.getItem("decoup")].reduce((a, b) => a + b)
-            allElevesNotes.push(notesAditionEleve / eleves.notes[localStorage.getItem("decoup")].length)
+            mclass.push(notesAditionEleve / eleves.notes[localStorage.getItem("decoup")].length)
         } catch (e) {
             notification('fail', "ceratins eleves n'ont pas de notes dans cette classe")
         }
 
     })
     // calcule la moyenne de classe
-    if (allElevesNotes != "") {
-        let note_class = allElevesNotes.reduce((a, b) => a + b)
-        let moyenne_classe = note_class / allElevesNotes.length
+    if (mclass != "") {
+        let note_class = mclass.reduce((a, b) => a + b)
+        let moyenne_classe = note_class / mclass.length
         $('.myenne__classe').innerHTML = moyenne_classe.toFixed(2)
         //la plus fort et la plus faible note de la classe
-        let plus_fort_note = Math.max.apply(null, allElevesNotes)
-        let plus_faible_note = Math.min.apply(null, allElevesNotes)
+        let plus_fort_note = Math.max.apply(null, mclass)
+        let plus_faible_note = Math.min.apply(null, mclass)
         $('.plus_forte_n').innerHTML = plus_fort_note.toFixed(2)
-        if (dataClasse.length > 1 && allElevesNotes.length == 1) {
+        if (dataClasse.length > 1 && mclass.length == 1) {
             $('.plus_faible_n').innerHTML = 0
         } else {
             $('.plus_faible_n').innerHTML = plus_faible_note.toFixed(2)
         }
 
         // afiche le nombre des eleves de la classe
-        $('.label').innerHTML = dataClasse.length
+        let nombre_eleves = dataClasse.length
+        $('.label').innerHTML = nombre_eleves
+
     } else {
         $('.myenne__classe').innerHTML = "0"
         $('.plus_forte_n').innerHTML = "0"
@@ -826,9 +668,7 @@ const suprimerEleve = (id) => {
     data.splice(index, 1);
     INSERT('eleves', JSON.stringify(data))
     createClasseListeOf(getElevesOff(SELECT_FROM("actuel_etablissement"), SELECT_FROM("actuel_classe")))
-    $('.label').innerHTML = dataClasse.length
     para()
-
 }
 $('#enregistre_edition').onclick = () => {
     let id = Number($('.eleve_id').id)
@@ -874,6 +714,7 @@ const para = () => {
                 let id = suprim.id
                 suprimerEleve(id)
                 listerEtablisselents()
+                liste_etab_nom()
                 get_classe_infos()
             }
 
@@ -881,10 +722,6 @@ const para = () => {
     })
     return popers
 }
-
-
-
-
 
 $('.print').onclick = () => {
     window.print()

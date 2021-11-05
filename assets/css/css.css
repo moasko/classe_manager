@@ -23,7 +23,7 @@ body {
     color: #fff;
     border-radius: 50%;
     width: 25px;
-    height: 25px;
+    -+height: 25px;
 }
 
 .moyen-btn-rond {
@@ -38,4 +38,21 @@ body {
     border-radius: 50%;
     width: 45px;
     height: 45px;
+}
+
+.formga {
+    overflow: hidden;
+    display: flex;
+    border: 1px solid black;
+    margin: 1px;
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+.formga input {
+    n
+}
+
+.selectes_types {
+    display: flex;
 }
