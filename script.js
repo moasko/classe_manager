@@ -155,7 +155,15 @@ const deblock = () => {
 
 }
 
-
+const printClasseListe = (etablissement) => {
+    let classes = ''
+    JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST))
+        .find(e => e.name === etablissement)
+        .classes.map(e => {
+            classes += `<div class="classePrint">${e}</div>`
+        })
+    $('.aficher_liste_classe').innerHTML = classes
+}
 
 document.querySelectorAll('.etabsInDom').forEach(e => {
     e.addEventListener('click', () => {
@@ -165,6 +173,7 @@ document.querySelectorAll('.etabsInDom').forEach(e => {
         e.classList.add('activated')
         document.querySelector('#selectedEtablissementId').value = e.id
         document.querySelector('.actualeta').innerHTML = e.id
+        printClasseListe(e.id)
     })
 })
 

@@ -1,9 +1,9 @@
 ---
 name: " Demande de fonctionnalité"
-about: Suggérer une idée pour ce projet
-title: ''
-labels: ''
-assignees: ''
+about: ajouter une section de calcule de myennes annuel
+title: 'calcule de myennes annuel'
+labels: 'js'
+assignees: 'moasko'
 
 ---
 
