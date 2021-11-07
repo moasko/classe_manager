@@ -1,6 +1,6 @@
 //selectionne les puces et les deroule au click
 
-const rw = document.querySelectorAll('.rott')
+/* const rw = document.querySelectorAll('.rott')
 for (let i = 0; i < rw.length; i++) {
     rw[i].onclick = () => {
         let rwh = rw[i].querySelector('.wr')
@@ -23,7 +23,7 @@ for (const pc of m) {
         t.classList.toggle("rotat180");
         this.nextElementSibling.classList.toggle("hop");
     });
-}
+} */
 
 //recuperation de la date
 const anne = document.querySelector(".annee");
@@ -92,12 +92,7 @@ former.addEventListener('click', (e) => {
 
 
 
-let add_el = document.querySelector('.eleve_add_modal')
-add_el.addEventListener('click', () => {
-    modal.style.display = "block"
-    $('#etablissement').value = SELECT_FROM('actuel_etablissement')
-    $('#classe').value = SELECT_FROM('actuel_classe')
-})
+
 
 //ouverture de plus
 function plu() {

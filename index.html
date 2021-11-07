@@ -85,12 +85,12 @@
 
                         <div class="formg">
                             <label for="etablissement">etablissement</label>
-                            <input disabled type="text" id="etablissement" name="etablissement">
+                            <input type="text" id="etablissement" name="etablissement">
                         </div>
 
                         <div class="formg">
                             <label for="classe">classe</label>
-                            <input disabled type="text" name="classe" id="classe">
+                            <input type="text" name="classe" id="classe">
                         </div>
 
 
@@ -173,7 +173,8 @@
 
                             <div class="formg">
                                 <div class="goupper">
-                                    <label for="decoupage"> selectionnez le mode de decoupage de l'année scolaire</label>
+                                    <label for="decoupage"> selectionnez le mode de decoupage de l'année
+                                        scolaire</label>
                                     <select name="decoupage" id="decoupage" data_key="decoupage">
                                         <option value="1">block</option>
                                         <option value="2">semestre</option>
@@ -363,12 +364,12 @@
                                 <div class="selectes_types">
 
                                     <div class="formga">
-                                        <input type="radio" name="type" id="1/5">
-                                        <label for="1/5">note/10</label>
+                                        <input class="di" di="0.5" type="radio" name="type" id="di">
+                                        <label for="di">note/10</label>
                                     </div>
                                     <div class="formga">
-                                        <input type="radio" name="type" id="1">
-                                        <label for="1">note/20</label>
+                                        <input class="di" di="1" type="radio" name="type" id="di">
+                                        <label for="di">note/20</label>
                                     </div>
                                 </div>
                                 <label for="ajouter_note">attribuer une note a cet eleve</label>
@@ -378,7 +379,7 @@
 
                                 </div>
                             </div>
-                            <h1 class="points"> <span class="ptn"> 00</span><span class="dmn">Ptn</span></h1>
+                            <h1 class="points"> </h1>
                             <hr>
                             <h1 class="moy">00<span class="dmn">dMn</span></h1>
                         </div>

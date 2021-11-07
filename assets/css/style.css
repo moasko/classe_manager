@@ -1881,6 +1881,10 @@ label {
   background: #011729;
 }
 
+.lowcolor {
+  color: #ffffff54 !important;
+}
+
 .openSettingsLayer {
   -webkit-transform: translate(0%) !important;
           transform: translate(0%) !important;
