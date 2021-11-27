@@ -180,7 +180,7 @@
                                         <option value="2">semestre</option>
                                         <option value="3">trimestre</option>
                                     </select>
-                                    <button id="mode" class="button okbtn">ok</button>
+                                    <button id="mode" class="button okbtn setSesonBtn">ok</button>
                                 </div>
 
                             </div>
@@ -361,20 +361,25 @@
                             <h4 class="n1">aucun élève selectionner</h4>
 
                             <div class="add_note">
+                                <input type="hidden" value="0.5" name="di" id="di">
                                 <div class="selectes_types">
 
-                                    <div class="formga">
-                                        <input class="di" di="0.5" type="radio" name="type" id="di">
-                                        <label for="di">note/10</label>
+                                    <div id="0.5" class="note_sur active">
+                                        <div class="point"></div>
+                                        <span>/10</span>
                                     </div>
-                                    <div class="formga">
-                                        <input class="di" di="1" type="radio" name="type" id="di">
-                                        <label for="di">note/20</label>
+                                    <div id="1" class="note_sur">
+                                        <div class="point"></div>
+                                        <span>/20</span>
                                     </div>
                                 </div>
                                 <label for="ajouter_note">attribuer une note a cet eleve</label>
                                 <input placeholder="note" type="number" name="ajouter_note" id="ajouter_note">
-                                <button class="add_note_btn">+</button> <button class="delet_note_btn">-</button>
+                                <div class="di">
+                                    <button class="add_note_btn">+</button>
+                                    <button class="delet_note_btn">-</button>
+                                </div>
+
                                 <div class="notedur">
 
                                 </div>

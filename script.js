@@ -74,8 +74,6 @@ modal.addEventListener('click', () => {
 function vider_champ() {
     document.querySelector('#nom').value = ''
     document.querySelector('#prenom').value = ''
-    document.querySelector('#etablissement').value = ''
-    document.querySelector('#classe').value = ''
 }
 
 

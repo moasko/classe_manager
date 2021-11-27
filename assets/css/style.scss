@@ -1,469 +1,14 @@
-* {
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-    border: none;
-    outline: none;
+<html lang="fr"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>scool manager</title><link href="assets/css/css.css" rel="stylesheet"><link href="assets/css/style.css" rel="stylesheet"><link href="assets/css/icofont.min.css" rel="stylesheet"></head><body><div class="edit_screen"><div class="edit_screen--in"><div class="edit--header"><div class="eleve_id"></div><div class="close_edit_scree">X</div></div><div class="edit--body"><div class="input-flex"><input type="text" name="edite_nom" id="edite_nom"><input type="text" name="edite_prenom" id="edite_prenom"></div><div class="input-flex"><select name="etab" id="edite_etablissement"><option value="samaritin">samaritin</option><option value="istco">istco</option><option value="isg">isg</option></select><select name="class" id="edite_classe"><option value="tleB">tle B</option><option value="tlBa">tle Ba</option><option value="2ndBb">2nd Bb</option></select></div><div class="input-flex one"><label for="edit_notes">les notes de la period en cours</label><input type="text" name="edit_notes" id="edit_notes"></div></div><div class="edit--footer"><button id="enregistre_edition">enregistrer</button><button>annuler</button></div></div></div><div class="absolut_ajouts"><!--notifications--><div class="not"><div class="notifications"><div class="notifi_icon">3</div><div class="notifi_texte">eleve ajouter avec succes</div></div></div><!--------ajouter eleve----------><div class="modal"><div class="moadal_in"><div class="former"><div class="formulair_titre">Ajouter un élève </div><div><div class="double"><div class="formg"><label for="nom">nom</label><input type="text" name="name" id="name"></div><div class="formg"><label for="prenom">prenom</label><input type="text" name="prenom" id="prenom"></div></div><div class="formg"><label for="etablissement">etablissement</label><input type="text" id="etablissement" name="etablissement"></div><div class="formg"><label for="classe">classe</label><input type="text" name="classe" id="classe"></div><div class="btns"><button class="btn ajouter_elev">ajouter</button><button class="btn annuler">anuler</button></div></div></div></div></div></div><div class="settingsLayer"><div class="parametres-inner"><div class="sidebar-parames"><div class="profile"><div class="bar_retour"><div class="closeSettingsLayer"><i class="icofont-long-arrow-left"></i></div></div><h4 class="nom">inconnue</h4><p class="matiere">pas definit</p></div><a href="#param_screen1"><i class="icofont-teacher"></i>Information personnel</a><a href="#param_screen2">gestion</a><a href="#param_screen3">anne Solaire</a><a href="#param_screen4"><i class="icofont-ssl-security"></i>Securiter</a></div><div class="params-layer"><div id="param_screen1" class="screen"><div class="screen-in flex"><div class="demis"><h1>editer infos</h1><div class="formg"><label for="nom">nom</label><input class="demis-input" value="" type="text" data_key="nom" name="nom" id="nom"><button class="button okbtn">ok</button></div><div class="formg"><label for="n">prenom</label><input class="demis-input" data_key="prenom" value="" type="text" name="n" id="n"><button class="button okbtn">ok</button></div><div class="formg"><div class="goupper"><label for="n">sex</label><select name="sel" id="sex" data_key="sex"><option value="homme">H</option><option value="femme">F</option></select><button class="button okbtn">ok</button></div></div></div><div class="demis actu border"><h1>infos actuel</h1><div class="actuel-nom">Nom: moasko</div><div class="actuel-prenom">PreNom: abdoul</div><div class="actuel-sex">sex: H</div></div></div></div><div id="param_screen2" class="screen"><div class="screen-in flex"><div class="demis"><h1>gestion</h1><div class="formg"><div class="goupper"><label for="decoupage">selectionnez le mode de decoupage de l'année
+ scolaire</label><select name="decoupage" id="decoupage" data_key="decoupage"><option value="1">block</option><option value="2">semestre</option><option value="3">trimestre</option></select><button id="mode" class="button okbtn">ok</button></div></div><div class="formg"><label for="matiere">matiere prise</label><div class="goupper"><input class="demis-input" data_key="matiere" value="" type="text" name="matiere" id="matiere"><button class="button okbtn">ok</button></div></div><div class="formg"><label for="coef">coeficient de la matiere</label><div class="goupper"><input class="demis-input" data_key="coef" value="" type="number" name="coef" id="coef"><button class="button okbtn">ok</button></div></div></div><div class="demis actu border"><h1>infos actuel</h1><div class="modaliteCalcule"><div class="claculIn"><div class="box1"><label for="un" class="un"></label><input value="1" type="number" name="un" id="un"></div><div class="box2"><label for="deux" class="deux">+Trimestre2 x</label><input value="1" type="number" name="deux" id="deux"></div><div class="box3"><label for="trois" class="trois">+Trimestre3</label><input value="1" type="number" name="trois" id="trois"></div>=MGA </div><button class="modeVlide">valider</button></div></div></div></div><div id="param_screen3" class="screen"><div class="screen-in flex"><div class="demis"><h1>editer infos</h1><input type="hidden" id="selectedEtablissementId" name="dd"><div class="formg alignedInputs"><button class="add_new_etablissement_btn">ajouter</button><input class="demis-input" id="add_etablissement_input" type="text"></div><h4>liste des etablissments</h4><ul class="aficher_liste_etablissements"></ul></div><div class="demis actu border"><h1>infos actuel</h1><h4 class="indic_classe">liste des classes de <span class="actualeta"></span></h4><div class="formg alignedInputs clssees"><button class="add_classes_btn">ajouter</button><input class="demis-input" id="add_classes_input" data_key="add_classes" value="" type="text"></div><ul class="aficher_liste_classe"></ul></div></div></div><div id="param_screen4" class="screen"><div class="screen-in flex"><div class="demis"><h1>editer infos</h1><div class="formg"><label for="password">mot de passe de verouillage</label><div class="goupper"><input value="" type="text" data_key="passwordp" name="passwordp" id="passwordp"><button class="button okbtn">ok</button></div></div><div class="formg"><span>Dfinir un temp de verouillage automatique en cas d'inactiviter en
+ <strong>minutes</strong></span><label for="passeword">temp de veroillage</label><div class="goupper"><input value="1" min="1" max="5" data_key="temps" type="number" name="temps" id="temps"><button class="button okbtn">ok</button></div></div></div><div class="demis actu border"><h1>infos actuel</h1><div class="actuel_password">mot de passe de verouillage: <strong></strong></div></div></div></div></div></div></div><div class="app-ecran"><!--la tête de l'app-->
+ <header><div class="btnplus"><button class="pea"><i class="icofont-navigation-menu"></i></button></div><!--logo--><div class="label__conter"><div class="label__text">nombre d'eleves</div>
+ <div class="label">0</div></div><div class="radios"><div id="a1" class="a1 epe">1</div><div id="a2" class="a2">2</div><div id="a3" class="a3">3</div></div><div class="annee"></div></header><!--le corps de l'app-->
+ <div id="layout-container"><div id="sidebar"><h2>ETABLISSEMENTS</h2><div class="sidbar-content"></div><div class="vertical_nav_btns opened"><button class="btn_closer_params"><i class="icofont-close-line-circled"></i></button><div class="vertical-in"><button class="eleve_add_modal">+<span>ajouter un eleve</span></buttonn><button class="listes"><i class="icofont-list"></i><span>afficher la liste de cette calsse</span></button><button class="classement"><i class="icofont-listing-number"></i><span>fair le classement de cette classe</span></button><button class="btn_rond openSettingsBtn"><i class="icofont-settings-alt"></i><span>parametres</span></button></div></div></div><!--87399922--><div class="conter"><div class="ativ"><div class="cree"><div class="trace"></div><!-------------------tableau des notes----------------------------><div class="tableau"><div class="spla"><img width="100%" height="500px" src="assets/img/icons/tcsvg.svg" /></div></div></div><!--bare des infos relative--><div class="asid"><div class="notes nn"><h4 class="n1">aucun élève selectionner</h4><div class="add_note"><input type="hidden" value="0.5" name="di" id="di"><div class="selectes_types"><div id="0.5" class="note_sur active"><div class="point"></div><span>/10</span></div><div id="1" class="note_sur"><div class="point"></div><span>/20</span></div></div><label for="ajouter_note">attribuer une note a cet eleve</label><input placeholder="note" type="number" name="ajouter_note" id="ajouter_note"><div class="di"><button class="add_note_btn">+</button><button class="delet_note_btn">-</button></div><div class="notedur"></div></div><h1 class="points"></h1><hr><h1 class="moy">00<span class="dmn">dMn</span></h1></div><div class="notes"><div class="notesf green"></div><p>la moyenne de classe</p><h1 class="myenne__classe"></h1><sup>dMn</sup></div><div class="notes">aucun élève selectionner </div><div class="notes"><div class="notesf"><img src="assets/img/icons/green.png" alt=""></div><p>la plus forte moyenne</p><h1 class="plus_forte_n">00</h1><sup>dMn</sup></div><div class="notes"><div class="notesf"><img src="assets/img/icons/red.png" alt=""></div><p>la plus faible moyenne</p><h1 class="plus_faible_n">00</h1><sup>dMn</sup></div></div></div><body></div></div></div><div class="modal_liste"><div class="bar"><div class="close_liste">x</div><button class="print">imprimer</button></div><h1 class="classe_name"></h1><div class="table"><table><thead></thead><tbody></tbody></table></div></div><div class="lock-screen dislock"><div class="lock-screen-in"><div class="dislocker_form"><input placeholder="Mot de passe" type="password" name="m" class="password" id="password" /><button id="dislock_btn">deblocker</button></div></div></div><script src="assets/js/logic.js"></script><script src="script.js"></script></body></html>&::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
 }
 
-html,
-body {
-    scroll-behavior: smooth;
-}
-
-body {
-    position: relative;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background: #20262e;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    color: #adadad;
-    height: 100vh;
-}
-
-header {
-    align-items: center;
-    display: flex;
-    height: 60px;
-    background: #1c2128;
-    box-shadow: 0 0 5px rgba(28, 33, 40, 0);
-    z-index: 100;
-    width: 100vw;
-}
-
-
-/*scrool option*/
-
-.rott {
-    border-bottom: 1px solid #20262e;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.rot {
-    cursor: pointer;
-    text-transform: capitalize;
-    font-size: 15px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    position: relative;
-    padding: 4px 0px;
-    width: 100%;
-    background-color: #282f38ad;
-    transition: 0.3s;
-}
-
-.annee {
-    margin-right: 10px;
-    position: absolute;
-    right: 0;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: #ffffff;
-    font-size: 15px;
-}
-
-.puc {
-    right: 0;
-    position: absolute;
-    transition: 0.3s;
-    width: 20px;
-}
-
-strong {
-    color: #fff;
-}
-
-.rotat180 {
-    transition: 0.3s;
-    transform: rotate(180deg);
-}
-
-.wr {
-    cursor: pointer;
-    transition: 0.3s;
-    overflow: hidden;
-    height: 0;
-    width: 100%;
-}
-
-.vide_dom {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    font-size: 27px;
-    text-align: center;
-    font-weight: bolder;
-    text-transform: uppercase;
-    color: #00a8a836;
-}
-
-.size {
-    font-size: 12px;
-}
-
-.wr>.a {
-    padding: 10px 0px 10px 10px;
-    background-color: rgba(58, 58, 58, 0.59);
-    font-size: 14px;
-    color: rgb(202, 202, 202);
-    text-decoration: none;
-    display: block;
-}
-
-.wr>.a:hover {
-    color: #0084ff;
-    transition: 0.3s;
-    background-color: rgb(49, 49, 49);
-}
-
-.hop {
-    transition: 0.3s;
-}
-
-thead {
-    width: 100%;
-}
-
-tbody {
-    height: 100px;
-}
-
-.label__conter {
-    margin-left: 100px;
-}
-
-.label {
-    font-size: 20px;
-    padding: 2px 10px;
-    background-color: #00a8a8;
-    display: inline-block;
-    color: white;
-    border-radius: 5px;
-    font-weight: 800;
-}
-
-.label__text {
-    color: white;
-    border-radius: 5px;
-    margin-right: -9px;
-    padding: 0px 5px;
-    background-color: #0084ff;
-    display: inline-block;
-}
-
-
-/*contente*/
-
-.ativ {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-}
-
-.app-ecran {
-    display: block;
-    height: 100%;
-    overflow: hidden;
-}
-
-::-o-scrollbar {
-    width: 0px;
-}
-
-::-webkit-scrollbar {
-    width: 1px;
-    height: 0px;
-    background-color: #00a8a8;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background-color: #ff9100;
-}
-
-::-webkit-scrollbarx {
-    background-color: #3261a3;
-}
-
-::-moz-scrollbar {
-    width: 0px;
-}
-
-::-ms-scrollbar {
-    width: 0px;
-}
-
-.berger {
-    width: 30px;
-}
-
-.berger-intern {
-    margin-top: 4px;
-    display: block;
-    width: 100%;
-    height: 4px;
-    background-color: white;
-    border-radius: 20px;
-}
-
-.sidbarCloser {
-    opacity: 0;
-    overflow: hidden;
-    transition: 0.4s cubic-bezier(0.6, -0.28, 0.74, 0.05);
-    width: 0px !important;
-}
-
-.nn {
-    margin-bottom: 15px;
-    width: 90% !important;
-    height: 40% !important;
-}
-
-#sidebar {
-    position: relative;
-    transition: 0.4s cubic-bezier(0.6, -0.28, 0.74, 0.05);
-    height: 100%;
-    box-sizing: border-box;
-    float: left;
-    grid-area: sidebar;
-    padding: 0;
-    margin: 0;
-    width: 200px;
-    font-size: 12px;
-    border-right: 1px solid #323c49;
-    background: #20262e;
-    display: flex;
-    flex-direction: column;
-    z-index: 20;
-    color: #cfd0d2;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
-}
-
-.colore {
-    background-color: red;
-}
-
-.el {
-    transition: 0.05s;
-    border-bottom: 1px solid black;
-}
-
-.el:hover {
-    background-color: #0061bd;
-    border-bottom: 1px solid black;
-}
-
-#layout-container {
-    transition: 0.4s;
-    display: grid;
-    height: calc(100% - 60px);
-    position: relative;
-    grid-template-columns: 210px 1fr;
-    grid-template-areas: "sidebar content";
-}
-
-.cent {
-    width: 100%;
-    height: 100%;
-    transition: 0.4s;
-}
-
-#sidebar>h2 {
-    text-align: center;
-}
-
-
-/*logo*/
-
-.tra {
-    margin-left: 13px;
-    width: 1px;
-    background-color: #0084ff;
-    height: 100%;
-}
-
-.logohub {
-    margin-left: 20px;
-}
-
-.logohub>h1 {
-    color: #0084ff;
-    margin: 0;
-    display: inline-block;
-}
-
-.logohub>img {
-    width: 30px;
-}
-
-td.no {
-    width: 45px;
-    text-align: center;
-}
-
-
-/* side bar ajouter btn*/
-
-.ajouter-btn {
-    height: 30px;
-}
-
-.ajouter-btn>img {
-    transition: 0.4s;
-    cursor: pointer;
-    flex: none;
-    height: 100%;
-    margin-left: 50px;
-}
-
-.ajouter-btn>img:hover {
-    transition: 0.4s;
-    animation: me 0.8s infinite cubic-bezier(0.18, -0.54, 0.36, 1.54);
-}
-
-@keyframes me {
-    from {
-        transform: scale(1, 1);
-    }
-    to {
-        transform: scale(1.2, 1.2);
-    }
-}
 
-.tableau {
-    height: 100%;
-    overflow: scroll;
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
-
-.cree {
-    height: calc(100vh - 40px);
-    position: relative;
-    color: white;
-    width: 70%;
-}
-
-.pp {
-    display: none;
-}
-
-.n1 {
-    text-align: center;
-    font-size: 20px;
-}
-
-.tr {
-    background-color: #0061bd;
-}
-
-.tr>td {
-    text-align: center;
-}
-
-.cree>table {
-    overflow: scroll;
-    padding: 5px;
-    width: 100%;
-}
-
-
-/*aouter elements*/
-
-.elems {
-    transition: 0.4s;
-    background-color: #0084ff;
-    border-bottom: 1px solid beige;
-    color: white;
-    width: 100%;
-    padding: 20px 10px;
-}
-
-.elems:hover {
-    transition: 0.4s;
-    background-color: #0061bd;
-}
-
-.ajouter {
-    position: relative;
-}
-
-.efe {
-    transition: 0.3s;
-    height: 300px !important;
-}
-
-.ajouter-element {
-    overflow: scroll;
-    border-radius: 4px;
-    background-color: #20262e;
-    transition: 0.5s;
-    left: 60px;
-    z-index: 999;
-    position: absolute;
-    width: 300px;
-    height: 0px;
-    box-shadow: 0px 0px 5px black;
-}
-
-.asid {
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: space-around;
-    width: 30%;
-}
-
-.dmn {
-    font-weight: normal;
-    font-size: 11px;
-}
-
-.no:hover {
-    cursor: pointer;
-    background-color: #ff00d4;
-}
-
-.notes {
-    transition: 0.2s;
-    overflow: hidden;
-    position: relative;
-    height: 135px;
-    padding: 5px;
-    color: white;
-    width: 40%;
-    margin-bottom: 10px;
-    background-color: #293649;
-}
-
-.table {
-    flex-wrap: wrap;
-    overflow: scroll;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    &::-webkit-scrollbar {
-        width: 10px !important;
-    }
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1 !important;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: #888 !important;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555 !important;
-    }
-}
-
 .classe_name {
     color: #000;
     width: max-content;
@@ -471,7 +16,6 @@ td.no {
     padding: 5px;
     margin: 5px 0px 0px 0px;
 }
-
 .table_bar_btn {
     .close_liste {
         height: 30px;
@@ -482,16 +26,13 @@ td.no {
         background: red;
     }
 }
-
 .notes:hover {
     transition: 0.2s;
     background-color: #172a4d;
 }
-
 .notesf>img {
     width: 70px;
 }
-
 .loading__screen {
     height: 100vh;
     position: fixed;
@@ -514,80 +55,71 @@ td.no {
         }
     }
 }
-
 @keyframes scal {
     from {
         opacity: 1;
         transform: scale(1, 1);
     }
+    
     to {
         opacity: 0;
         transform: scale(2, 2);
     }
 }
-
 .unanim {
     animation: scal 1s infinite;
 }
-
 .deuxanim {
     animation: scal 2s infinite;
 }
-
 .troisanim {
     animation: scal 3s infinite;
 }
-
 .moy {
     right: 14px;
     position: absolute;
     display: inline;
     bottom: 0;
 }
-
 .points {
     right: 14px;
     position: absolute;
     display: inline;
     bottom: 60px;
+    sub {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.603);
+    }
 }
-
 .notesf {
     right: 0;
     bottom: 0;
     position: absolute;
 }
-
 .notes>p {
     text-align: center;
     font-size: 12px;
 }
-
 .trrr {
     background-color: #00a8a8b9;
 }
 
-
 /*tableau*/
-
 .vm {
     margin-left: 4px;
     padding: 3px;
     width: 30px;
     border: none;
 }
-
 .ajouter {
     border: none;
     width: 40px;
 }
-
 .plus {
     background-color: green;
     font-size: 30px;
     text-align: center;
 }
-
 .trace {
     z-index: 200;
     top: 0;
@@ -598,7 +130,6 @@ td.no {
     color: #ffffff;
     background-color: #023361;
 }
-
 .eleve {
     position: relative;
     cursor: pointer;
@@ -616,37 +147,32 @@ td.no {
     &:hover {
         background-color: #1d6ace;
     }
+    
     &:focus {
         background: red;
     }
 }
-
 .notees {
     font-size: 12px;
     margin-right: 20px;
     display: flex;
 }
-
 .notees>div {
     width: 33px;
     text-align: center;
 }
-
 .nom_eleve {
     width: 100%;
     font-size: 12px;
     text-transform: capitalize;
 }
-
 .plus_hun {
     transition: 0.5s;
     position: relative;
 }
-
 .visible {
     display: none;
 }
-
 .pluss {
     border: 1px dotted orange;
     z-index: 80;
@@ -658,18 +184,15 @@ td.no {
     width: 80px;
     background-color: #fff;
 }
-
 .pluss>a {
     padding: 5px;
     border-bottom: 1px dotted darkgrey;
     width: 100%;
     color: #000;
 }
-
 .pluss>a:hover {
     background-color: rgb(230, 230, 230);
 }
-
 .more {
     align-items: center;
     width: 30px;
@@ -681,7 +204,6 @@ td.no {
     color: blue;
     height: 100%;
 }
-
 .rang {
     border-right: 1px solid #807e7e;
     display: inline;
@@ -690,7 +212,6 @@ td.no {
     color: #38e700;
     font-weight: 100;
 }
-
 .moadal_in {
     display: flex;
     justify-content: center;
@@ -705,7 +226,6 @@ td.no {
     background: transparent;
     backdrop-filter: blur(4px);
 }
-
 .modal {
     z-index: 14444;
     position: fixed;
@@ -713,11 +233,9 @@ td.no {
     width: 100%;
     height: 100%;
 }
-
 .flex {
     display: flex;
 }
-
 .former {
     position: relative;
     background-color: #fff;
@@ -725,16 +243,13 @@ td.no {
     width: 30%;
     height: 80%;
 }
-
 .double {
     justify-content: space-between;
     display: flex;
 }
-
 .formg>label {
     display: block;
 }
-
 .formulair_titre {
     margin-bottom: 20px;
     text-align: center;
@@ -743,7 +258,6 @@ td.no {
     color: rgb(2, 41, 124);
     width: 100%;
 }
-
 .vertical_nav_btns {
     transition: 0.5s;
     top: 0;
@@ -789,6 +303,7 @@ td.no {
             background-color: red;
         }
     }
+    
     .btn_rond {
         text-align: center;
         background-color: red;
@@ -799,7 +314,6 @@ td.no {
         color: #fff;
     }
 }
-
 .btn_closer_params {
     background-color: transparent;
     font-size: 30px;
@@ -813,12 +327,10 @@ td.no {
     align-items: center;
     justify-content: center;
 }
-
 .formg {
     margin-bottom: 20px;
     padding: 1rem;
 }
-
 .formg>input {
     border: none;
     background-color: #c7d8d4;
@@ -826,7 +338,6 @@ td.no {
     width: 100%;
     padding: 1rem;
 }
-
 .formg>select {
     color: #fff;
     background-color: #183863;
@@ -834,63 +345,50 @@ td.no {
     width: 100%;
     padding: 10px;
 }
-
 .formg>select>option {
     padding: 5px;
 }
-
 .sex {
     display: flex;
     width: 100%;
 }
-
 .lab {
     font-size: 25px;
 }
-
 .check {
     margin-left: 50px;
 }
-
 .focus {
     transition: 0.3s;
     background-color: rgb(243, 84, 84) !important;
 }
-
 .btns {
     bottom: 0;
     width: 100%;
     justify-content: space-around;
     display: flex;
 }
-
 .ajouter_elev {
     color: #fff;
     background-color: rgb(45, 150, 45);
 }
-
 .annuler {
     color: #fff;
     background-color: rgb(252, 61, 61);
 }
-
 .btn {
     padding: 15px 56px;
     border: none;
 }
-
 .opened {
     transform: translate(-100%);
 }
-
 .eleve_add_modal {
     color: #fff;
     background-color: orangered;
 }
 
-
 /********notifications css********/
-
 .not {
     display: none;
     top: 10px;
@@ -898,7 +396,6 @@ td.no {
     z-index: 1000000000;
     position: absolute;
 }
-
 .notifications {
     background-image: radial-gradient(#ff00b3 1.4px, transparent 1px);
     background-size: calc(10 * 1px) calc(10 * 1px);
@@ -908,14 +405,12 @@ td.no {
     color: #fff;
     padding: 15px;
 }
-
 .notifi_texte {
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .notifi_icon {
     border-radius: 50%;
     display: flex;
@@ -927,58 +422,56 @@ td.no {
     font-size: 20px;
     width: 35px;
 }
-
 .succes {
     border-left: 5px solid #dacbcb;
     background-color: rgb(0, 160, 40);
 }
-
 .fail {
     border-left: 5px solid #dacbcb;
     background-color: rgb(218, 0, 0);
 }
-
 .view {
     display: block !important;
 }
-
 .add_note {
     position: absolute;
     /* margin: auto; */
+    
     bottom: 31px;
-    left: 9px;
+    left: 0px;
+    border: 1px solid rebeccapurple;
+    padding: 14px;
+    bottom: 0;
+    background-color: rgba(102, 51, 153, 0.301);
 }
-
 .add_note>label {
     display: block;
     font-size: 10px;
 }
-
 .add_note>input {
-    border-radius: 20px;
+    border-radius: 6px;
     padding: 5px;
-    border: none;
-    width: 100px;
+    border: 1px solid #0053a0;
+    width: 140px;
+    background-color: #001930;
+    color: #fff;
 }
-
-.add_note>button {
+.add_note>.di>button {
+    margin-top: 6px;
     outline: none;
     color: #fff;
     background-color: transparent;
-    width: 25px;
+    width: 65px;
     height: 25px;
-    border-radius: 50%;
+    border-radius: 6px;
     text-align: center;
     border: 1px solid;
 }
-
 .delet_note_btn {
     margin-left: 5px;
 }
 
-
 /*********listes de classe et autre************/
-
 .modal_liste {
     transition: 0.3s;
     transform: translate(100%);
@@ -990,17 +483,14 @@ td.no {
     position: fixed;
     top: 0;
 }
-
 .view {
     transform: translate(0%) !important;
 }
-
 table {
     margin-bottom: 200px;
     color: #000;
     border-collapse: collapse;
 }
-
 td,
 th {
     min-width: 40px;
@@ -1009,20 +499,15 @@ th {
     text-align: left;
 }
 
-
 /********loading page***********/
 
-
 /********liste modale******/
-
 .delete_etablissement_button {
     cursor: pointer;
 }
-
 .activated {
     background-color: #7a8b9b!important;
 }
-
 .bar {
     display: flex;
     align-items: center;
@@ -1031,34 +516,31 @@ th {
     padding: 6px;
     background-color: rgb(218, 218, 218);
 }
-
 @media print {
     .table {
         display: block;
     }
+    
     .bar {
         display: none;
     }
+    
     table {
         width: 100%;
         margin-bottom: 0px;
     }
 }
-
 .close_liste {
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
 }
-
 .dislock {
     display: none;
 }
-
 .loked {
     display: block;
 }
-
 .lock-screen {
     top: 0;
     position: fixed;
@@ -1067,22 +549,20 @@ th {
     width: 100%;
     height: 100vh;
 }
-
 .aucune {
     letter-spacing: 4px;
     animation: bli 1s infinite;
     width: 130px !important;
 }
-
 @keyframes bli {
     from {
         opacity: 0;
     }
+    
     to {
         opacity: 1;
     }
 }
-
 .lock-screen-in {
     display: flex;
     justify-content: center;
@@ -1090,13 +570,11 @@ th {
     width: 100%;
     height: 100%;
 }
-
 .dislocker_form {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
 .password {
     border-radius: 40px;
     border: none;
@@ -1105,7 +583,6 @@ th {
     padding: 20px;
     font-display: 20px;
 }
-
 #dislock_btn {
     outline: none;
     border-radius: 20px;
@@ -1117,15 +594,12 @@ th {
     color: #fff;
 }
 
-
 /********pages des parametres ************/
-
 .parametres-inner {
     transition: 0.5s;
     display: grid;
     grid-template-columns: minmax(150px, 20%) 1fr;
 }
-
 .sidebar-parames {
     height: 100vh;
     border-right: 1px solid black;
@@ -1145,13 +619,11 @@ th {
         }
     }
 }
-
 .params-layer {
     transition: 0.5s;
     overflow: hidden;
     height: 100vh;
 }
-
 .profile {
     text-align: center;
     h4 {
@@ -1159,6 +631,7 @@ th {
         font-weight: bolder;
         margin: 0px;
     }
+    
     .bar_retour {
         display: flex;
         justify-content: space-between;
@@ -1182,12 +655,10 @@ th {
         }
     }
 }
-
 .screen {
     width: 100%;
     height: 100vh;
 }
-
 .screen-in {
     width: 100%;
     height: 100%;
@@ -1203,34 +674,30 @@ th {
         }
     }
 }
-
 .border {
     border-radius: 14px;
     border: 1px solid rgb(52, 53, 63);
 }
-
 .actu {
     color: #fff;
 }
-
 .demis {
     padding: 1rem;
     width: 50%;
     div {
         margin-bottom: 12px;
     }
+    
     h1 {
         text-align: center;
     }
 }
-
 .okbtn {
     width: 30px;
     height: 30px;
     font-size: 12px;
     border-radius: 50%;
 }
-
 .goupper {
     display: flex;
     align-items: center;
@@ -1242,24 +709,19 @@ th {
     }
 }
 
-
 /****types of inputs *****/
-
 .long-input {
     width: 300px;
 }
-
 .demis-input {
     width: 250px;
 }
-
 .epe {
     font-size: 12px !important;
     transition: 0.2s;
     transform: scale(1.1);
     background-color: rgb(0, 92, 230) !important;
 }
-
 .spla {
     font-weight: bold;
     text-transform: uppercase;
@@ -1267,7 +729,6 @@ th {
     font-size: 100px;
     color: rgb(31, 63, 88);
 }
-
 .radios {
     display: flex;
     margin-left: 100px;
@@ -1288,9 +749,7 @@ th {
     }
 }
 
-
 /*********les parametres de chaques eleves ****************/
-
 .par {
     position: relative;
     text-align: right;
@@ -1324,7 +783,6 @@ th {
         }
     }
 }
-
 .popview {
     z-index: 1539;
     overflow: auto;
@@ -1332,7 +790,6 @@ th {
     right: -5px;
     top: 25px;
 }
-
 .pea {
     cursor: pointer;
     background-color: transparent;
@@ -1341,9 +798,7 @@ th {
     color: #fff;
 }
 
-
 /************ecran d'edition eleves *********/
-
 .edit_screen {
     transition: 0.5s cubic-bezier(0.64, 0.63, 0.05, 1.01);
     transform: translateX(100%);
@@ -1397,25 +852,22 @@ th {
             min-height: 30px;
         }
     }
+    
     .close_edit_scree {
         cursor: pointer;
         font-size: 20px;
         font-family: Georgia, "Times New Roman", Times, serif;
     }
 }
-
 .edit_view {
     transform: translateX(0%) !important;
 }
-
 label {
     display: block;
 }
-
 .alignedInputs {
     display: flex;
 }
-
 .etabsInDom {
     transition: 0.5s;
     font-weight: bolder;
@@ -1430,20 +882,17 @@ label {
         background-color: rgb(255, 139, 139);
     }
 }
-
 .aficher_liste_etablissements,
 .aficher_liste_classe {
     padding: 0px;
     margin: 0px;
 }
-
 .classePrint,
 .etabsInDom {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 .classePrint {
     cursor: pointer;
     transition: 0.5s;
@@ -1457,20 +906,17 @@ label {
         background-color: rgb(0, 174, 255);
     }
 }
-
 .claculIn {
     display: flex;
     div {
         display: flex;
     }
 }
-
 .supnote {
     display: initial;
     font-size: 8px;
     color: #91b3ff;
 }
-
 .radiSElec {
     width: 100%;
     display: flex;
@@ -1488,14 +934,12 @@ label {
         }
     }
 }
-
 #un,
 #deux,
 #trois {
     width: 45px;
     color: rgb(255, 0, 21);
 }
-
 .get_note_editable {
     display: flex;
     margin-top: 15px;
@@ -1518,11 +962,9 @@ label {
         }
     }
 }
-
 .activeEtablissementClasse {
     background-color: #0053a0 !important;
 }
-
 .avide {
     font-size: 12px;
     padding: 4px;
@@ -1532,7 +974,6 @@ label {
     color: #fff;
     background-color: #0053a0;
 }
-
 .bled {
     display: flex;
     flex-direction: row;
@@ -1542,7 +983,6 @@ label {
         border: 0px;
     }
 }
-
 .selectes_types {
     .formga {
         position: relative;
@@ -1555,7 +995,6 @@ label {
         }
     }
 }
-
 .settingsLayer {
     transition: .5s;
     position: fixed;
@@ -1564,11 +1003,48 @@ label {
     width: 100%;
     background: rgb(1, 23, 41);
 }
-
 .lowcolor {
     color: #ffffff54 !important;
 }
-
 .openSettingsLayer {
+    z-index: 10000;
     transform: translate(0%)!important;
+}
+.selectes_types {
+    .note_sur {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 300;
+        color: #dad6d6;
+        background-color: #4747475b;
+        margin-right: 6px;
+        text-align: right;
+        width: 65px;
+        padding: .3rem;
+        border-radius: 6px;
+        border: 1px solid #707070;
+        span {
+            display: block;
+        }
+        .point {
+            background-color: transparent;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            padding: 3px;
+            border: 3px solid #707070;
+        }
+    }
+    
+    .active {
+        color: #fddcdf;
+        border: 1px solid #ff2839;
+        background-color: #ff283a5b;
+        .point {
+            background-color: transparent;
+            border: 3px solid #ff2839;
+        }
+    }
 }

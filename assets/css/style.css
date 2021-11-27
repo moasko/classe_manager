@@ -30,10 +30,9 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 60px;
+  height: 48px;
   background: #1c2128;
-  -webkit-box-shadow: 0 0 5px rgba(28, 33, 40, 0);
-          box-shadow: 0 0 5px rgba(28, 33, 40, 0);
+  border-bottom: 1px solid #151717;
   z-index: 100;
   width: 100vw;
 }
@@ -277,6 +276,27 @@ tbody {
   color: #cfd0d2;
   -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+footer {
+  border-top: 1px solid #151717;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 36px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0 1em;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  width: 100%;
 }
 
 .colore {
@@ -648,6 +668,11 @@ td.no {
   position: absolute;
   display: inline;
   bottom: 60px;
+}
+
+.points sub {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.603);
 }
 
 .notesf {
@@ -1125,7 +1150,11 @@ td.no {
   position: absolute;
   /* margin: auto; */
   bottom: 31px;
-  left: 9px;
+  left: 0px;
+  border: 1px solid rebeccapurple;
+  padding: 14px;
+  bottom: 0;
+  background-color: rgba(102, 51, 153, 0.301);
 }
 
 .add_note > label {
@@ -1134,19 +1163,22 @@ td.no {
 }
 
 .add_note > input {
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 5px;
-  border: none;
-  width: 100px;
+  border: 1px solid #0053a0;
+  width: 140px;
+  background-color: #001930;
+  color: #fff;
 }
 
-.add_note > button {
+.add_note > .di > button {
+  margin-top: 6px;
   outline: none;
   color: #fff;
   background-color: transparent;
-  width: 25px;
+  width: 65px;
   height: 25px;
-  border-radius: 50%;
+  border-radius: 6px;
   text-align: center;
   border: 1px solid;
 }
@@ -1886,6 +1918,53 @@ label {
 }
 
 .openSettingsLayer {
+  z-index: 10000;
   -webkit-transform: translate(0%) !important;
           transform: translate(0%) !important;
+}
+
+.selectes_types .note_sur {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  font-weight: 300;
+  color: #dad6d6;
+  background-color: #4747475b;
+  margin-right: 6px;
+  text-align: right;
+  width: 65px;
+  padding: .3rem;
+  border-radius: 6px;
+  border: 1px solid #707070;
+}
+
+.selectes_types .note_sur span {
+  display: block;
+}
+
+.selectes_types .note_sur .point {
+  background-color: transparent;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  padding: 3px;
+  border: 3px solid #707070;
+}
+
+.selectes_types .active {
+  color: #fddcdf;
+  border: 1px solid #ff2839;
+  background-color: #ff283a5b;
+}
+
+.selectes_types .active .point {
+  background-color: transparent;
+  border: 3px solid #ff2839;
 }

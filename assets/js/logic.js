@@ -2,6 +2,7 @@ const ETABLISSEMENTS_LIST = 'ETABLISSEMENTS';
 const CLASSES_LIST = 'CLASSES';
 const LOCKED = 'LOCKED';
 const U_ID = 'UNIC_ID' || 0;
+const E_ID = 'E_ID' || 0;
 const ELEVES_LISTE = 'ELEVES';
 const CURENT_ETABLISSEMENT = 'CURENT_ETABLISSEMENT';
 const DECOUP = 'DECOUP';
@@ -54,7 +55,6 @@ if (dataClasse == undefined || dataClasse == null) dataClasse = []
  */
 const nombreDe = (items) => items.length
 
-
 /**
  * document.querySelector
  * @param {HTMLElement} element l'element a selectionné
@@ -100,6 +100,15 @@ let dom_liste_eleves = $(".tableau")
 const btn_ajouter_eleves = $('.ajouter_elev')
 
 
+//une fonction pour incrementer les ID
+function incrementId(table) {
+    !table && null
+    let id = Number(SELECT_FROM(table))
+    INSERT(table, id + 1)
+    return Number(SELECT_FROM(table))
+}
+
+
 /**
  * permet de cree une liste des eleves dans le dom
  * avec leurs infos [nom...notes]
@@ -114,11 +123,11 @@ let createClasseListeOf = (select_data) => {
     <div class="eleve" id=${data_items.id}>
     <div class="rang">${index + 1}</div>
     <div class="nom_eleve">${data_items.nom} ${data_items.prenom}</div>
-    <div class="notees">${notes != "" ? notes.map(note => `<div>${note.n}<sub class="lowcolor">/${(note.d === "0.5") ? "10" : "20"}</sub></div>`).join('') : '<div class="aucune">Aucune note</div>'}</div>
+    <div class="notees">${notes != "" ? notes.map(note => `<div>${note.n}<sub class="lowcolor">/${(Number(note.d) === 0.5) ? "10" : "20"}</sub></div>`).join('') : '<div class="aucune">Aucune note</div>'}</div>
     <div class="par">
     <div class="view_option">o</div>
     <div class="poper_view">
-    <button id=${data_items.id} class="editer_eleve">editer</button>
+       <button id=${data_items.id} class="editer_eleve">editer</button>
     <button id=${data_items.id} class="suprimer_eleve">suprimer</button>
     </div> 
     </div>
@@ -148,13 +157,12 @@ let listerEtablisselents = () => {
 
 
 function etablissementExistin(etabName) {
-    let exstingetabs = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST))
+    let exstingetabs = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST)) || []
     let y = exstingetabs.map(e => {
         return e.name
     })
     return y.includes(etabName)
 }
-
 
 
 /**
@@ -163,6 +171,9 @@ function etablissementExistin(etabName) {
  */
 window.onload = () => {
     if (!exist_in_db(UNIC_ID)) {
+        localStorage.setItem(U_ID, 0)
+    }
+    if (!exist_in_db(E_ID)) {
         localStorage.setItem(U_ID, 0)
     }
 }
@@ -176,39 +187,66 @@ window.onload = () => {
         notes: [{ n: 8, s: 0.5 }, { n: 15, s: 0.5 }]
 }
  */
-function toggleAll(allElements, classe) {
-    [document.querySelectorAll(allElements)].map(element => {
-        if (element.classList.contains(classe)) {
-            element.classList.remove(classe)
-        }
-        element.onclick = function () {
-            element.classList.add(classe)
+
+
+
+function toggleAll(element, classe) {
+    let noteRadios = document.querySelectorAll(element)
+    noteRadios.forEach(radi => {
+        radi.onclick = () => {
+            removeClasse(noteRadios, classe)
+            radi.classList.add(classe)
+            $('#di').value = radi.id
+
         }
     })
+
+}
+
+toggleAll('.note_sur', "active")
+
+const isEmpty = (value) => {
+    return (
+        value === undefined ||
+        value === null ||
+        (typeof value === "object" && Object.keys(value).length === 0) ||
+        (typeof value === 'string' && value.trim().length === 0)
+    )
+
+}
+
+
+/*******************************traimeent etablissements**************************** */
+const getEtablissementsListe = () => {
+    let etablissements = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST)) || [];
+    return etablissements;
 }
 
 
 
-
-
-/*******************************traimeent etablissements**************************** */
 const creatEtablissement = (etablissementName) => {
-    try {
-        if (etablissementName) {
-            if (exist_in_db(ETABLISSEMENTS_LIST)) {
-                if (!etablissementExistin(etablissementName)) {
-                    let etabs = SELECT_FROM(ETABLISSEMENTS_LIST);
-                    let stingfy = JSON.parse(etabs)
-                    let etab_to_insert = [{ "name": etablissementName, "classes": [] }, ...stingfy]
+
+    if (etablissementName) {
+        if (!exist_in_db(ETABLISSEMENTS_LIST)) {
+            INSERT(ETABLISSEMENTS_LIST, JSON.stringify([{ "id": incrementId(E_ID), "name": etablissementName, "classes": [] }]))
+        } else {
+            if (!etablissementExistin(etablissementName)) {
+                let etabs = SELECT_FROM(ETABLISSEMENTS_LIST);
+
+                let stingfy = JSON.parse(etabs)
+                if (!isEmpty(stingfy)) {
+                    let etab_to_insert = [{ "id": incrementId(E_ID), "name": etablissementName, "classes": [] }, ...stingfy]
                     INSERT(ETABLISSEMENTS_LIST, JSON.stringify(etab_to_insert))
                 } else {
-                    console.log(`etablissemnt ${etablissementName} existe deja`)
+                    INSERT(ETABLISSEMENTS_LIST, JSON.stringify([{ "id": incrementId(E_ID), "name": etablissementName, "classes": [] }]))
                 }
+
             } else {
-                INSERT(ETABLISSEMENTS_LIST, JSON.stringify([{ "name": etablissementName, "classes": [] }]))
+                console.log(`etablissemnt ${etablissementName} existe deja`)
             }
         }
-    } catch (e) { console.log("une erreure avec l'ajoute d'tablissement" + e) }
+    }
+
 }
 
 $('.add_new_etablissement_btn').addEventListener('click', () => {
@@ -216,7 +254,9 @@ $('.add_new_etablissement_btn').addEventListener('click', () => {
     if (add_etablissement_input != '') {
         creatEtablissement(add_etablissement_input)
         gestionPuce()
-        printEtablissement()
+        setTimeout(() => {
+            printEtablissement(getEtablissementsListe())
+        }, 1000)
         notification('success', `${add_etablissement_input} a bien ete ajouter a la liste des etablissement`)
     } else {
         null
@@ -224,19 +264,15 @@ $('.add_new_etablissement_btn').addEventListener('click', () => {
     }
 })
 
-const getEtablissementsListe = () => {
-    let etablissements = JSON.parse(SELECT_FROM(ETABLISSEMENTS_LIST));
-    return etablissements;
-}
 
-const printEtablissement = async () => {
+const printEtablissement = async (etablissementList) => {
     let listeEtalissementInDom = ''
-    await getEtablissementsListe().map(async e => {
-        listeEtalissementInDom += `<li class="etabsInDom"  id=${(e.name).replace(/\s+/g, "").toLowerCase()}><span>${e.name}</span><span classe="delete_etablissement_button"><i class="icofont-close-line-circled"></i></span></li>`
+    await etablissementList.map(async e => {
+        listeEtalissementInDom += `<li class="etabsInDom"  id=${(e.id)}><span>${e.name}</span><span classe="delete_etablissement_button"><i class="icofont-close-line-circled"></i></span></li>`
     })
     document.querySelector('.aficher_liste_etablissements').innerHTML = listeEtalissementInDom;
 }
-printEtablissement()
+printEtablissement(getEtablissementsListe())
 /*********************************************traitement etablissement fin***************************/
 
 
@@ -272,7 +308,6 @@ add_classes_btn.addEventListener('click', () => {
     } else {
         createClasse(selectedEtablissementId, add_classes_input)
         printEtablissement()
-        refreshEtablissementParamettersListe()
     }
 })
 
@@ -546,7 +581,7 @@ let calculer_moyen_eleve = (id) => {
     let trp = not.notes[localStorage.getItem("decoup")], nombre = trp.length
     let accumulateNotes = trp.map(n => n.n, []).reduce((a, b) => Number(a) + Number(b))
     let accumulDivi = trp.map(n => n.d, []).reduce((a, b) => Number(a) + Number(b))
-    $('.points').innerHTML = `<span class="ptn">${accumulateNotes}</span><span class="dmn">Ptn</span>/<sub>${accumulDivi}</sub>`
+    $('.points').innerHTML = `<span class="ptn">${accumulateNotes}</span><span class="dmn">Ptn</span><sub>/${accumulDivi}</sub>`
 
     if (isNaN(accumulateNotes / accumulDivi)) {
         nombre = 1
@@ -558,6 +593,19 @@ const getEleve = (id) => {
     let eleve = data.find(e => e.id == id)
     return eleve
 }
+
+
+function getStudent(id) {
+    let elevesData = data.find(eleve => eleve.id = id)
+    return {
+        name: elevesData.nom,
+        lastName: elevesData.prenom,
+        etablissement: elevesData.etablissement,
+        classe: elevesData.classe,
+
+    }
+}
+
 
 
 //ajouter un note a un eleve selectionne
@@ -594,12 +642,16 @@ add_note_btn.onclick = () => {
     let di = $('#di').value
     if (note != '' || note != "undefined") {
         if (note > 20) {
-            notification("fail", "na note ne peut etre superieur a 20")
+            notification("fail", "la note ne peut etre superieur a 20")
         } else {
-            ajouter_note(note, di)
-            get_classe_infos()
-            $('#ajouter_note').value = ''
-            notification("succes", "note ajouer")
+            if (di === "0.5" && note > 10) {
+                notification("fail", "la note ne peut etre superieur a 10")
+            } else {
+                ajouter_note(note, di)
+                get_classe_infos()
+                $('#ajouter_note').value = ''
+                notification("succes", "note ajouer")
+            }
         }
 
     } else {
@@ -628,23 +680,23 @@ $('#classe').value = SELECT_FROM(SELECTED_CLASSE)
 
 
 
-
-
-
 function get_classe_infos() {
     //moyenne de chaque eleves
     let allElevesNotes = []
     //recupere les notes de chaque eleves
     dataClasse.map(eleves => {
         try {
-            let notesAditionEleve = eleves.notes[localStorage.getItem("decoup")].reduce((a, b) => a + b)
-            console.log(notesAditionEleve)
-            allElevesNotes.push(notesAditionEleve / eleves.notes[localStorage.getItem("decoup")].length)
+            let notesAditionEleve = eleves.notes[localStorage.getItem("decoup")]
+                .map(e => e.n).reduce((a, b) => a + b)
+            let notesdiviseEleve = eleves.notes[localStorage.getItem("decoup")]
+                .map(r => r.d).reduce((a, b) => a + b)
+            allElevesNotes.push(notesAditionEleve / notesdiviseEleve)
         } catch (e) {
             notification('fail', "ceratins eleves n'ont pas de notes dans cette classe")
         }
 
     })
+
 
     // calcule la moyenne de classe
     if (allElevesNotes != "") {
@@ -721,7 +773,6 @@ let list_de_classe = (tabl, classe) => {
     tbody.innerHTML = classe_list
 }
 
-
 /**
  * function pour editer un eleves
  */
@@ -737,15 +788,10 @@ const data_update = ({ id, key, newvalue }) => {
     }
 }
 
-
-
-
 let setEleves = () => {
     let str = JSON.stringify(data)
     localStorage.setItem('eleves', str)
 }
-
-
 
 let radio = document.querySelector('.radios')
 let radios = radio.querySelectorAll('div')
@@ -786,11 +832,11 @@ if (SELECT_FROM("decoup") == "a1") {
 }
 
 
-if (localStorage.getItem('decoupage') === "1") {
+if (SELECT_FROM(SESSION_SCOLAIRE) === "1") {
     radio.children[0].innerHTML += " block"
     radio.children[1].style.display = "none"
     radio.children[2].style.display = "none"
-} else if (localStorage.getItem('decoupage') === "2") {
+} else if (SELECT_FROM(SESSION_SCOLAIRE) === "2") {
     radio.children[2].style.display = "none"
     radio.children[1].innerHTML += " semestre"
     radio.children[0].innerHTML += " semestre"
@@ -800,18 +846,28 @@ if (localStorage.getItem('decoupage') === "1") {
     radio.children[2].innerHTML += " trimestre"
 }
 
+$('.setSesonBtn').onclick = () => {
+    if ($('#decoupage').value != '') {
+        INSERT(SESSION_SCOLAIRE, $('#decoupage').value)
+    }
+}
+
 
 
 
 const clasement = (classe_data, decoup) => {
     const additione = (eleves) => {
-        let notes = eleves.notes[decoup]
+        let notes = eleves.notes[decoup].map(e => {
+            return e.n
+        }, [])
+
         if (notes == [] || notes == '' || notes == undefined) {
             return 0
         } else {
             return notes.reduce((a, b) => (a + b))
         }
     }
+
     let classement_classe_table = []
     classe_data.forEach(e => {
         classement_classe_table.push({ 'nom': e.nom, 'prenom': e.prenom, "total_notes": additione(e) })
@@ -839,7 +895,6 @@ const clasement = (classe_data, decoup) => {
 
 }
 
-
 $('.classement').onclick = async () => {
     await clasement(dataClasse, localStorage.getItem('decoup'))
     document.querySelector('.modal_liste').classList.toggle('view')
@@ -849,7 +904,6 @@ $('.close_edit_scree').onclick = () => {
     $('.edit_screen').classList.remove('edit_view')
 }
 
-
 const suprimerEleve = (id) => {
     let index = data.map(function (item) { return item.id; }).indexOf(Number(id));
     data.splice(index, 1);
@@ -857,8 +911,8 @@ const suprimerEleve = (id) => {
     createClasseListeOf(getElevesOff(SELECT_FROM(SELECTED_ETABLISSEMENT), SELECT_FROM(SELECTED_CLASSE)))
     $('.label').innerHTML = dataClasse.length
     para()
-
 }
+
 $('#enregistre_edition').onclick = () => {
     let id = Number($('.eleve_id').id)
     const to = JSON.parse(SELECT_FROM("eleves"))
@@ -876,6 +930,8 @@ $('#enregistre_edition').onclick = () => {
     get_classe_infos()
     get_eleve_info()
 }
+
+
 
 
 const para = () => {
@@ -910,7 +966,6 @@ const para = () => {
     })
     return popers
 }
-
 
 
 
